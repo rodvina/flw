@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+<project name="FormsLibraryWeb" default="full">
+
+	<!-- setup all properties here -->
+	<property environment="env"/>
+	<!-- override properties before master-default.properties-->
+	<property name="usg.javac.build.dir" value="build/WEB-INF/classes" />
+	<property name="usg.javac.source" value="1.7" />
+	<property name="usg.javac.target" value="1.7" />
+	
+	<property name="usg.was.home" value="${env.WAS_HOME_8.5}" />
+
+	<property file="${env.MBS_HOME_1.0}/master-default.properties" prefix="usg"/>
+
+	<!-- required properties -->
+	<property name="usg.project.name" value="FormsLibraryWeb" />
+	<property name="usg.project.version" value="1.0" />
+
+	<!-- enterprise app properties -->
+	<property name="usg.ear.project.name" value="FormsLibraryWebEAR" />
+	
+	<property name="usg.war.file.name" value="FormsLibraryWeb.war" />
+
+	<!-- import scripts -->
+	<import file="${env.MBS_HOME_1.0}/standard-macros.xml"/>
+	<import file="${env.MBS_HOME_1.0}/master-build.xml"/>
+
+	<path id="was.lib">
+		<fileset dir="${usg.was.home}/lib" includes="**/*.jar" />
+		<!--
+		<fileset dir="${usg.was.home}/plugins" includes="**/*.jar" />
+		-->
+	</path>
+
+
+	<path id="ear.lib">
+		<fileset dir="../${usg.ear.project.name}/lib" includes="**/*.jar" />
+	</path>
+
+	<!-- build.classpath (remove unnecessary elements) -->
+	<path id="build.classpath">
+		<fileset dir="${usg.build.dir}/WEB-INF/lib" includes="**/*.jar" />
+		<fileset dir="${usg.project.lib}" includes="**/*.jar" />
+		<path refid="ear.lib" /> 
+		<path refid="was.lib" />
+		<pathelement path="${usg.src.dir}" />
+	</path>
+
+	<path id="test.build.classpath">
+		<path refid="test.lib" />
+		<path refid="build.classpath" />
+		<pathelement path="${usg.javac.build.dir}" />
+	</path>
+
+	<path id="test.classpath">
+		<path refid="test.build.classpath" />
+		<pathelement path="${usg.test.build.dir}" />
+	</path>
+
+	<!-- implements abstract target 
+	<target name="-projectDependencyList">
+		<dependency projectName="your project"/>
+	</target>
+	-->
+
+	<!-- Executable targets -->
+	<target name="min" description="web minimum build" depends="-displayProperties,-cleanJava,-initJava,-copyWebApp,-projectDependencyList,-copyWebResources,-javac,-distWeb,-cleanupTemp" />
+	<target name="full" description="web full build" depends="-displayProperties,-cleanJava,-initJava,-copyWebApp,-projectDependencyList,-copyWebResources,-javac,-copyTestResources,-instrumentedTest,-htmlCoverageReport,-javadoc,-distWeb,-findbugs,-cleanupTemp"/>
+
+</project>

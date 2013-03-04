@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<project name="FormsLibraryWebBuild" default="buildSCM">
+
+	<!-- setup all properties here -->
+	<property environment="env"/>
+	<!-- override properties before master-default.properties-->
+
+	<property file="deploy.properties" />
+	<property file="${env.MBS_HOME_1.0}/master-default.properties" prefix="usg"/>
+
+	<!-- required properties -->
+	<property name="usg.project.name" value="FormsLibraryWebBuild" />
+	<property name="usg.project.version" value="1.0" />
+
+	<!-- enterprise app properties --> 
+	<property name="usg.ear.project.name" value="FormsLibraryWebEAR" />
+	
+
+	<!-- ear properties -->
+	<property name="usg.ear.file.name" value="FormsLibraryWeb.ear" />
+	
+
+	<!-- staging properties -->
+	<!--
+	<property name="usg.staging.os" value="windows" />
+	<property name="usg.staging.path" value="c:/temp" />
+	-->
+
+	<!-- import scripts -->
+	<import file="${env.MBS_HOME_1.0}/standard-macros.xml"/>
+	<import file="${env.MBS_HOME_1.0}/master-build.xml"/>
+
+	<path id="was.lib">
+		<fileset dir="${usg.was.home}/lib" includes="**/*.jar" />
+	</path>
+
+	<path id="ear.lib">
+		<fileset dir="../${usg.ear.project.name}/lib" includes="**/*.jar" />
+	</path>
+
+	<target name="-buildProjects">
+		<ant dir="../FormsLibraryWeb" inheritAll="false" target="full"/>
+	</target>
+
+	<target name="-buildProjectsSCM">
+		<ant dir="../FormsLibraryWeb" inheritAll="false" target="min"/>
+	</target>
+
+	<target name="-cleanAll">
+		<ant dir="../FormsLibraryWeb" inheritAll="false" target="clean"/>
+		<antcall target="clean"/>
+	</target>
+
+	<target name="-mergeProjectArtifacts">
+		<merge-artifacts projectName="FormsLibraryWeb" srcDir="src" />
+	</target>
+
+	<!-- Executable targets 
+	<target name="assemble" description="assembles " depends="-displayProperties, -cleanEnterpriseBuild, -initEnterpriseBuild, -buildProjects, -mergeProjectArtifacts, -coverageReportEnterpriseBuild, -javadocEnterpriseBuild, -createEAREnterpriseBuild, -cleanupTemp" />
+	<target name="buildSCM" description="builds for SCM" depends="-displayProperties, -cleanEnterpriseBuildSCM, -initEnterpriseBuildSCM, -buildProjectsSCM, -createEAREnterpriseBuildSCM, -cleanupTemp" />
+    <target name="cleanAll" description="clean sub projects for harvest checkin" depends="-cleanAll" />
+	-->
+	<target name="assemble" description="assembles " depends="-displayProperties, -cleanEnterpriseBuild, -initEnterpriseBuild, -buildProjects, -mergeProjectArtifacts, -cleanupTemp" />
+	<target name="buildSCM" description="builds for SCM" depends="-displayProperties, -cleanEnterpriseBuildSCM, -initEnterpriseBuildSCM, -buildProjectsSCM, -cleanupTemp" />
+    <target name="cleanAll" description="clean sub projects for harvest checkin" depends="-cleanAll" />
+</project>

@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<project name="FormsLibraryWeb" default="ear-build">
+
+	<!-- setup all properties here -->
+	<property environment="env"/>
+	<!-- override properties before master-default.properties-->
+	<property name="usg.javac.source" value="1.7" />
+	<property name="usg.javac.target" value="1.7" />	
+
+	<property file="${env.MBS_HOME_1.0}/master-default.properties" prefix="usg"/>
+
+	<!-- required properties -->
+	<property name="usg.project.name" value="FormsLibraryWeb" />
+	<property name="usg.project.version" value="1.0" />
+
+	<!-- enterprise app properties -->
+	<property name="usg.ear.project.name" value="FormsLibraryWebEAR" />
+	<!-- ear properties -->
+	<property name="usg.ear.file.name" value="FormsLibraryWeb.ear" />
+
+	<!-- import scripts -->
+	<import file="${env.MBS_HOME_1.0}/standard-macros.xml"/>
+	<import file="${env.MBS_HOME_1.0}/master-build.xml"/>
+
+	<target name="-projectDependencyList">
+		<dependency projectName="FormsLibraryWeb"/>
+	</target>
+
+	<!-- Executable targets -->
+	<target name="ear-build" description="ear build" depends="-displayProperties,-cleanEAR,-initEAR,-projectDependencyList,-distEAR,-cleanupTemp"/>
+
+</project>
