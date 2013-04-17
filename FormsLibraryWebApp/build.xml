@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<project name="FormsLibraryWeb" default="ear-build">
+<project name="FormsLibraryWebApp" default="ear-build">
 
 	<!-- setup all properties here -->
 	<property environment="env"/>
@@ -14,9 +14,9 @@
 	<property name="usg.project.version" value="1.0" />
 
 	<!-- enterprise app properties -->
-	<property name="usg.ear.project.name" value="FormsLibraryWebEAR" />
+	<property name="usg.ear.project.name" value="FormsLibraryWebApp" />
 	<!-- ear properties -->
-	<property name="usg.ear.file.name" value="FormsLibraryWeb.ear" />
+	<property name="usg.ear.file.name" value="FormsLibraryWebApp.ear" />
 
 	<!-- import scripts -->
 	<import file="${env.MBS_HOME_1.0}/standard-macros.xml"/>
