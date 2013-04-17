@@ -12,8 +12,7 @@
 	<context:annotation-config/>
 	-->
 	<!-- added in workshop class, pulled from web.xml 	-->
-	<import resource="data.xml" />
-	<import resource="jms-context.xml" />
+	
 	<import resource="servlet-context.xml" />
 
 	<!-- added in workshop class, scans for controllers -->

@@ -14,28 +14,39 @@
     
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-
+	
 	<!--  Standard Spring MessageSource implementation                    -->
 	<beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-	  <beans:property name="basename" value="Messages" />
+	  <beans:property name="basename" value="messages" />
 	</beans:bean>
 	
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory 
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory  -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	-->
+	
+	<beans:bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		<beans:property name="supportedMediaTypes" value="application/json" />
+	</beans:bean>
+
+	<!-- Client -->
+	<beans:bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+<!-- 
+		<beans:property name="messageConverters">
+			<beans:list>
+				<beans:ref bean="jsonConverter" />
+			</beans:list>
+		</beans:property> -->
+	</beans:bean>
 	
 	<!--  THYMELEAF-SPECIFIC ARTIFACTS                                    -->
-	<!--  TemplateResolver <- TemplateEngine <- ViewResolver              -->
+	<!--  TemplateResolver <- TemplateEngine <- ViewResolver             
 	<beans:bean id="templateResolver"
 	      class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
 	  <beans:property name="prefix" value="/WEB-INF/templates/" />
 	  <beans:property name="suffix" value=".html" />
 	  <beans:property name="templateMode" value="HTML5" />
-	  	<!-- Template cache is true by default. Set to false if you want -->
-	 	<!-- templates to be automatically updated when modified.        -->
 	  <beans:property name="cacheable" value="true" />
 	</beans:bean>
 	  
@@ -47,5 +58,5 @@
 	<beans:bean class="org.thymeleaf.spring3.view.ThymeleafViewResolver">
 	  <beans:property name="templateEngine" ref="templateEngine" />
 	</beans:bean>  
-	
+	 --> 
 </beans:beans>
