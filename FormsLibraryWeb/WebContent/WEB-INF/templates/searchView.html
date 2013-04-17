@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<!--
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+-->
 <style type="text/css" title="currentStyle">
+	@import "../../resources/css/normalize.min.css";
+	@import "../../resources/css/style.css";
     @import "../../resources/css/demo_page.css";
     @import "../../resources/css/jquery.dataTables.css";
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script type="text/javascript" language="javascript" src="../../resources/js/jquery.dataTables.min.js" th:src="@{/resources/js/jquery.dataTables.min.js}"></script>
+<script type="text/javascript" language="javascript" src="../../resources//js/jquery.dataTables.columnFilter.js"></script>
+<script type="text/javascript" language="javascript" src="../../resources/js/bPopup.js" th:src="@{/resources/js/bPopup.js}"></script>
 <script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
 
 <script type="text/javascript" charset="utf-8">
@@ -16,13 +22,15 @@
 				$('#resultsTable').dataTable( {
 					"bFilter": true,
 					"bStateSave": true,
+					"bJQueryUI": true,
 					"bSort" : true,
 					"bPaginate": false,
-					"sScrollY": "200px",
+					//"sScrollY": "200px",
 					"bScrollCollapse": true,
-				    "oLanguage": {
-				      "sSearch": "Filter results:"
-				    },
+					"oLanguage": {
+					      "sSearch": "Filter data:",
+						  "sInfo": "Found _TOTAL_ forms"
+					    }
 				} );
 				
 				$("input[name='submit']").click(function(){
@@ -30,7 +38,13 @@
 						$('#advancedFields').hide();
 				});
 				
+				$("input[name='clear']").click(function(){
+					    $('#results').hide();
+						$('#advancedFields').hide();
+				});
+				
 				$('#advancedLink').click(function() {
+					//$('#advancedFields').bPopup();
 					$('#advancedFields').toggle();
 				});
 				
@@ -43,50 +57,87 @@
 			
 			} );
 		</script>
-<style type="text/css">
-.hideme {
-	display: none;
-}
-body {
-	font-family: Calibri;
-	font-size: 14px;
-}
 
-option	 {
-	font-family: Calibri;
-	font-size: 14px;
-}
-</style>
 </head>
 <body>
-<DIV style="margin: 6px">
+<img alt="Kemper" src="../../resources/images/Kemper_Logo.png">
+
+<DIV>
 
 
-<H3 align="center" style="margin-bottom: 3px">Search Criteria</H3>
-<table width="757" border="0" id="searchTable">
+<H3 align="center">Search Criteria</H3>
+<table border="0" id="searchTable" align="center">
   <tr>
-    <td width="244"><table width="100%" border="0" cellspacing="10">
+    <td>
+    <table border="0" cellspacing="10">
       <tr>
-        <td width="193"><p>Form Number:<span class="input">
+        <td><p>
+          <label for="formNumber">Form Number</label>
+          <span class="input">
 
-          <input type="text" style="width:90%" name="formName4" />
+          <input type="text" style="width:100" name="formNumber"/>
           </span></p>
-          <p>Form Name:<span class="input">
-            <input name="formName" type="text" style="width:90%" maxlength="66" />
+          <p>
+            <label for="formName">Form Name</label>
+            <span class="input">
+            <input name="formName" type="text" style="width:100" maxlength="66" />
             </span></p></td>
-        <td width="94">State:
-           <select name="state2" size="5" multiple="true">
-            <option>-- Any --</option>
-            <option value="00">Alabama </option>
-            <option>Arkansas</option>
-              <option>Alaska</option>
-                <option>California</option>
-                <option>Delaware</option>   
-                <option>Georgia</option>
-            </select></td>
-        <td width="124">Line Of Business
-          <select name="lob2" size="5" multiple="true">
-            <option>-- Any --</option>
+        <td width="20%"><label for="state">State</label>
+           <select name="state" size="5" multiple="true">
+            <option selected="selected">-- Any --</option>
+				<option>Arkansas</option>
+				<option>California</option>
+				<option>Colorado</option>
+				<option>Connecticut</option>
+				<option>Delaware</option>
+				<option>District of Columbia</option>
+				<option>Florida</option>
+				<option>Georgia</option>
+				<option>Hawaii</option>
+				<option>Idaho</option>
+				<option>Illinois</option>
+				<option>Indiana</option>
+				<option>Iowa</option>
+				<option>Kansas</option>                       
+				<option>Kentucky</option>                      
+				<option>Louisiana</option>                     
+				<option>Maine</option>                       
+				<option>Maryland</option>                      
+				<option>Massachusettes</option>                
+				<option>Michigan</option>                      
+				<option>Minnesota</option>                     
+				<option>Mississippi</option>                   
+				<option>Missouri</option>                      
+				<option>Montana</option>                       
+				<option>Nebraska</option>                      
+				<option>Nevada</option>                       
+				<option>New Hampshire</option>                 
+				<option>New Jersey</option>                    
+				<option>New Mexico</option>                    
+				<option>New York</option>                      
+				<option>North Carolina</option>                
+				<option>North Dakota</option>                  
+				<option>Ohio</option>                       
+				<option>Oklahoma</option>                      
+				<option>Oregon</option>                       
+				<option>Pennsylvania</option>                  
+				<option>Puerto Rico</option>                   
+				<option>Rhode Island</option>                  
+				<option>South Carolina</option>                
+				<option>South Dakota</option>                  
+				<option>Tennessee</option>                     
+				<option>Texas</option>                       
+				<option>Utah</option>                       
+				<option>Vermont</option>                       
+				<option>Virginia</option>                      
+				<option>Washington</option>                    
+				<option>West Virginia</option>                 
+				<option>Wisconsin</option>                     
+				<option>Wyoming</option>                       
+         </select></td>
+        <td width="20%"><label for="lob">Line Of Business</label>
+          <select name="lob" size="5" multiple="true">
+            <option selected="selected">-- Any --</option>
             <option>All</option>
             <option>Auto Monoline</option>
             <option>Auto Package</option>
@@ -96,9 +147,9 @@ option	 {
             <option>Home Package</option>
             <option>PCL</option>
             </select></td>
-        <td width="108">Contract Type
-          <select name="contractType2" size="5" multiple="true" id="contractType2" >
-            <option>-- Any --</option>
+        <td width="20%"><label for="contractType">Contract Type</label>
+          <select name="contractType" size="5" multiple="true" id="contractType2" >
+            <option selected="selected">-- Any --</option>
             <option value="00">All</option>
             <option>Auto Single</option>
             <option>Auto Split</option>
@@ -109,10 +160,12 @@ option	 {
             <option>HO-2/HO-A+</option>
             <option>HO-3/HO-B</option>
             <option>HO-4/HO-BT</option>
+            <option>HO-5/HO-C</option>
+            <option>HO-6/HO-BCON</option>
             </select></td>
-        <td width="192">Company
-          <select name="company2" size="5" multiple="true">
-            <option value="00">-- Any --</option>
+        <td width="20%"><label for="company">Company</label>
+          <select name="company" size="5" multiple="true">
+            <option selected="selected">-- Any --</option>
               <option>All</option>
                 <option>HSCM</option>
                 <option>KGA</option>
@@ -128,16 +181,16 @@ option	 {
       </table></td>
   </tr>
 </table>
-<table width="985">
+<table align="center">
     <tr><td><a href="#" id="advancedLink">Advanced Search</a></td></tr>
 		<tr>
 		<td>
 		<div id="advancedFields" class="hideme">
 		  <table width="751" border="0" cellspacing="10">
 		    <tr>
-			    <td width="214"><label>Form Type:
-			      <select name="formType2" size="3" multiple="true">
-			        <option value="00">-- Any --</option>
+			    <td width="214"><label for="formType">Form Type</label>
+			        <select name="formType" size="3" multiple="true">
+			        <option selected="selected">-- Any --</option>
 		            <option>Amendatory</option>
 		            <option>Endorsement</option>
 	                <option>Insert</option>
@@ -149,10 +202,10 @@ option	 {
                     <option>U/W Correspondence</option>
                     <option>Credit</option>                  
                   </select>
-			    </label></td>
-			    <td width="218"><label>Print Category:
+			   </td>
+			    <td width="218"><label for="printCat">Print Category</label>
 			      <select name="printCat" size="3" multiple="true" id="printCat" >
-			        <option>Always First</option>
+			        <option value="1000-1999">Always First</option>
 			        <option>Before Dec Insert</option>
 			        <option>Special</option>
 			        <option>Declarations</option>
@@ -162,86 +215,140 @@ option	 {
 			        <option>Policy Contract</option>
 			        <option>Amendatory</option>
 			        <option>Priority Endorsement</option>
+			        <option>Concatenated Endorsement</option>
+			        <option>Endorsement</option>
+			        <option>Priority Insert</option>
+			        <option>Concatenated Insert</option>
+			        <option>Insert</option>
+			        <option>Stuffer</option>
 		          </select>
-			    </label></td>
-			    <td width="283">Coverage Code:
-			      <select name="printCat2" size="3" multiple="true" id="printCat2" >
-			        <option>-- Any --</option>
+			    </td>
+			    <td width="283"><label for="coverageCode">Coverage Code</label>
+			      <select name="coverageCode" size="3" multiple="true" id="printCat2" >
+			        <option selected="selected">-- Any --</option>
 			        <option>All</option>
 			        <option>Unit Owners Coverage - Special Coverage</option>
 			        <option>Additional Insured</option>
 			        <option>Additional Residence Rented to Others</option>
 			        <option>Discount on Premises Alarm Systems</option>
 			        <option>Additional Living Expense - Coverage E</option>
+			        <option>Ordinance and Law Coverage</option>
+					<option>Additional Earthquake Coverage - Engineering Services</option>
+					<option>Additional Earthquake Coverage - Reconstruction Cost</option>
+					<option>Earthquake</option>
+					<option>Extended Replacement Cost Coverage</option>
+					<option>Generic Endorsement</option>
+					<option>Loss Assessment Liability (Coverage)</option>
+					<option>Personal Injury</option>
+					<option>Personal Liability</option>
+					<option>Theft Coverage</option>
+					<option>Improvements, Alterations &amp; Additions</option>
+					<option>Unit Owners Coverage</option>
+					<option>Workers' Comp</option>
+					<option>Wind Hail Deductible</option>
+					<option>Dwelling (Coverage A)</option>
+					<option>Premises Liability</option>
+			        
               </select></td>
 		    </tr>
 			  <tr>
-			    <td>Event:
-<select name="formType" size="3" multiple="true">
-		          <option value="00">-- Any --</option>
+			    <td><label for="event">Event</label>
+<select name="event" size="3" multiple="true">
+		          <option selected="selected">-- Any --</option>
 		            <option>All</option>
 		            <option value="ADD">New Business</option>
 	                <option value="MOD">Amendment</option>
 	                <option>Renewal</option>
                     <option>Cancellation</option>
-                    <option>NP Cancel</option>
-                    <option>Finalization</option>
+                    <option>NP Cancel Finalization</option>
                     <option>Special Conversion</option>
                     <option>Kemper Conversion</option>
                     <option>Rewrite</option>
                 </select></td>
-			    <td>Bulk Renewal:
-<select name="formType3" size="3" multiple="true">
-		          <option value="00">-- Any --</option>
-		            <option>TBD</option>
-		            <option>TBD</option>
-		            <option>TBD</option>
-		            <option>TBD</option>
-                </select></td>
-			    <td>Rule ID:
+			    <td><p><label for="bulkRenewal">Bulk Renewal</label>
+            <select name="buldRenewal" size="3" multiple="true">
+			          <option selected="selected">-- Any --</option>
+			            <option>TBD</option>
+			            <option>TBD</option>
+			            <option>TBD</option>
+			            <option>TBD</option>
+		          </select>
+	              </p>
+		        </td>
+			    <td><label for="ruleId">Rule ID</label>
 			      <select name="ruleId" size="3" multiple="true" id="ruleId" >
-			        <option value="00">-- Any --</option>
+			        <option selected="selected">-- Any --</option>
 		            <option>PCS - Consumer Report Disclosure</option>
 		            <option>Mueller - Consumer Report Disclosure</option>
 	                <option>LexisNexis - Consumer Report Disclosure </option>
 	                <option>Owner Occupied </option>
                     <option>OWNER Occupied or no Coverage A </option>
+                    	<option>Non Owner Occupied</option>
+						<option>Liability Coverage</option>
+						<option>Personal Liability Added </option>
+						<option>Mortgagee on Policy </option>
+						<option>Mine Subsidence Rejection Indicator</option>
+						<option>New or Renewal Only </option>
+						<option>No Earthquake Coverage </option>
+						<option>No Extended RCD Coverage</option>
+						<option>Split Effective Dates </option>
+						<option>Coverage Percentage Deductible</option>
+						<option>Percent Deductible Change</option>
+						<option>Percent Deductible Roll On</option>
+						<option>Wind/Hail Flat Deductible Roll On</option>
+						<option>Wind/Hail Flat Deductible Roll Up</option>
+                    
                 </select></td>
 		      </tr>
 			  <tr>
-			    <td>NB Eff Date:
+			    <td><label for="nbEffDate">NB Eff Date</label>
 		        <input name="nbEffDate" type="date" id="nbEffDate"></input></td>
-			    <td>NB Exp Date:
-		        <input name="nbExpDate" type="date" id="nbExpDate"></input></td>
-			    <td><p>Premium Indicator:
-<select name="contractType3" size="3" multiple="true" id="contractType3" >
-                    <option>-- Any --</option>
+			    <td><label for="nbExpDate">NB Exp Date</label>
+	            <input name="nbExpDate" type="date" id="nbExpDate"></input></td>
+			    <td><label for="premiumInd">Premium Indicator</label>
+<select name="contractType3" size="3" multiple="true" id="premiumInd" >
+                    <option selected="selected">-- Any --</option>
                       <option value="00">Y</option>
                       <option>N</option>
-                    </select>
-			    </p></td>
+                  </select>
+			    </td>
 		    </tr>
 			  <tr>
-			    <td>REN Eff Date:
-                <input name="renEffDate" type="date" id="renEffDate"/></td>
-			    <td>REN Eff Date:
-                <input name="renExpDate" type="date" id="renExpDate"/></td>
-			    <td>Level Indicator:
-<select name="levelIndicator2" size="3" multiple="true" id="levelIndicator2" >
-                  <option></option>
+			    <td><label for="renEffDate">REN Eff Date</label>
+	            <input name="renEffDate" type="date" id="renEffDate"/></td>
+			    <td><label for="renExpDate">REN Eff Date</label>
+	            <input name="renExpDate" type="date" id="renExpDate"/></td>
+			    <td><label for="levelIndicator">Level Indicator</label>
+			      <select name="levelIndicator" size="3" multiple="true" id="levelIndicator" >
                     <option>Policy</option>
                     <option value="00">Activity</option>
                 </select></td>
 		    </tr>
+			<tr>
+				<td><label for="processingDate">Processing Date</label>
+	            <input name="processingDate" type="date" id="processingDate"/></td>
+			    <td><label for="modifiedDate">Modified Date</label>
+	            <input name="modifiedDate" type="date" id="modifiedDate"/></td>
+			    <td><label for="formId">Form ID</label>
+	            <input name="formId" type="text" id="formId" maxlength="5"/></td>
+		    </tr>
+			  <tr>
+			    <td><label for="status">Status</label>
+	            <select name="status" type="text" id="status">
+					<option value="00" selected="selected">-- Any-- </option>
+                    <option value="00">Active</option>
+                    <option value="00">Cancelled</option>
+                </select></td>
+		    </tr>		    
 		  </table>
         </div>
 		</td>
 		</tr>
-	</table>
-	<table id="thetable1">
+  </table>
+	<table id="thetable1"  align="center">
 		<tr>
-			<td colspan="2"></td>
-			<td colspan="2"><input name="submit" type="submit" value="Search"/><input type="button" value="Clear"/></td>
+			<td colspan="2"><input name="submit" type="submit" value="Search"/></td>
+			<td colspan="2"><input name="clear" type="button" value="Clear"/></td>
 		</tr>
 	</table>
   <p>&nbsp;</p>
@@ -249,14 +356,13 @@ option	 {
 <div id="results"  class="hideme">
 <H3 align="center" style="margin-bottom: 3px">Search Results</H3>	
 <form action="detailsView-New.html" id="resultsForm">
-<table width="757" border="0" cellspacing="2" id="resultsTable" class="display">
+<table width="757" border="1" cellspacing="2" id="resultsTable" class="display" align="center">
   <thead>
   <tr>
     <th>Form Number</th>
     <th>Form Name</th>
-    <th><div align="center">PDF</div></th>
-    <th><div align="center">Details</div></th>
-    <th><div align="center">Print</div></th>
+    <th>PDF</th>
+    <th>Details</th>
     </tr>
   </thead>
   <tbody>
@@ -265,63 +371,47 @@ option	 {
     <td>FAIR CREDIT REPORTING ACT</td>
     <td><div align="center"><a href="../../../testResources/mooreform.pdf"><img src="../../resources/images/icon_pdf.png" width="28" height="28"/></a></div></td>
     <td><div align="center"><a href="detailsView-New.html"><img src="../../resources/images/viewDetails.gif" width="28" height="30"/></a></div></td>
-    <td><div align="center">
-      <input type="checkbox"/>
-    </div></td>
+    
     </tr>
   <tr>
     <td>AK31610290 </td>
     <td>FAIR CREDIT/PRIVACY LAW</td>
     <td><div align="center"><a href="../../../testResources/mooreform.pdf"><img src="../../resources/images/icon_pdf.png" width="28" height="28"/></a></div></td>
     <td><div align="center"><a href="detailsView-New.html"><img src="../../resources/images/viewDetails.gif" width="28" height="30"/></a></div></td>
-    <td><div align="center">
-      <input type="checkbox"/>
-    </div></td>
+    
     </tr>
   <tr>
     <td>AK53550606</td>
     <td>Fair Credit Reporting Act-Impt Notice</td>
     <td><div align="center"><a href="../../../testResources/mooreform.pdf"><img src="../../resources/images/icon_pdf.png" width="28" height="28"/></a></div></td>
     <td><div align="center"><a href="detailsView-New.html"><img src="../../resources/images/viewDetails.gif" width="28" height="30"/></a></div></td>
-    <td><div align="center">
-      <input type="checkbox"/>
-    </div></td>
+    
     </tr>
   <tr>
     <td>AK53550606</td>
     <td>Fair Credit Reporting Act-Impt Notice</td>
     <td><div align="center"><a href="../../../testResources/mooreform.pdf"><img src="../../resources/images/icon_pdf.png" width="28" height="28"/></a></div></td>
     <td><div align="center"><a href="detailsView-New.html"><img src="../../resources/images/viewDetails.gif" width="28" height="30"/></a></div></td>
-    <td><div align="center">
-      <input type="checkbox"/>
-    </div></td>
+    
     </tr>
   <tr>
     <td>AK56010309</td>
     <td>Fair Credit Reporting Act-IMPT Notice</td>
     <td><div align="center"><a href="../../../testResources/mooreform.pdf"><img src="../../resources/images/icon_pdf.png" width="28" height="28"/></a></div></td>
     <td><div align="center"><a href="detailsView-New.html"><img src="../../resources/images/viewDetails.gif" width="28" height="30"/></a></div></td>
-    <td><div align="center">
-      <input type="checkbox"/>
-    </div></td>
+    
     </tr>
   <tr>
     <td>AK56011212</td>
     <td>Fair Credit Reporting Act - Important Notice</td>
     <td><div align="center"><a href="../../../testResources/mooreform.pdf"><img src="../../resources/images/icon_pdf.png" width="28" height="28"/></a></div></td>
     <td><div align="center"><a href="detailsView-New.html"><img src="../../resources/images/viewDetails.gif" width="28" height="30"/></a></div></td>
-    <td><div align="center">
-      <input type="checkbox"/>
-    </div></td>
     </tr>
   <tr>
     <td>K56261212</td>
     <td>Fair Credit Reporting Act - Important Notice</td>
     <td><div align="center"><a href=""><img src="../../resources/images/icon_pdf.png" width="28" height="28"/></a></div></td>
     <td><div align="center"><a href="detailsView-New.html"><img src="../../resources/images/viewDetails.gif" width="28" height="30"/></a></div></td>
-    <td><div align="center">
-      <input type="checkbox"/>
-    </div></td>
     </tr>
   </tbody>
   </table>
