@@ -1,53 +1,115 @@
 package com.ksg.formslibrary.domain;
 
-import java.util.List;
 
 public class ListValues extends AbstractDomain {
 	
 	//form input selection values
-	List<KeyValue> stateList;	
-	List<KeyValue> lobList;	
-	List<KeyValue> policyTypeList;	
-	List<KeyValue> companyList;
-	List<KeyValue> formTypeList;
-	List<KeyValue> mandOptList;
+	KeyValue[] states;	
+	KeyValue[] lobs;	
+	KeyValue[] policyTypes;	
+	KeyValue[] companies;
+	KeyValue[] formTypes;
+	KeyValue[] mandOpts;
+	KeyValue[] coverages;
+
+	public KeyValue[] getStateList() {
+		return states;
+	}
+
+	public void setStateList(KeyValue[] states) {
+		this.states = states;
+	}
+
+	public KeyValue[] getLobList() {
+		return lobs;
+	}
+
+	public void setLobList(KeyValue[] lobs) {
+		this.lobs = lobs;
+	}
+
+	public KeyValue[] getPolicyTypeList() {
+		return policyTypes;
+	}
+
+	public void setPolicyTypeList(KeyValue[] policyTypes) {
+		this.policyTypes = policyTypes;
+	}
+
+	public KeyValue[] getCompanyList() {
+		return companies;
+	}
+
+	public void setCompanyList(KeyValue[] companies) {
+		this.companies = companies;
+	}
+
+	public KeyValue[] getFormTypeList() {
+		return formTypes;
+	}
+
+	public void setFormTypeList(KeyValue[] formTypes) {
+		this.formTypes = formTypes;
+	}
+
+	public KeyValue[] getMandOptList() {
+		return mandOpts;
+	}
+
+	public void setMandOptList(KeyValue[] mandOpts) {
+		this.mandOpts = mandOpts;
+	}
+
+	public KeyValue[] getCoverageList() {
+		return coverages;
+	}
+
+	public void setCoverageList(KeyValue[] coverages) {
+		this.coverages = coverages;
+	}
 	
-	public List<KeyValue> getStateList() {
-		return stateList;
-	}
-	public void setStateList(List<KeyValue> stateList) {
-		this.stateList = stateList;
-	}
-	public List<KeyValue> getLobList() {
-		return lobList;
-	}
-	public void setLobList(List<KeyValue> lobList) {
-		this.lobList = lobList;
-	}
-	public List<KeyValue> getPolicyTypeList() {
-		return policyTypeList;
-	}
-	public void setPolicyTypeList(List<KeyValue> policyTypeList) {
-		this.policyTypeList = policyTypeList;
-	}
-	public List<KeyValue> getCompanyList() {
-		return companyList;
-	}
-	public void setCompanyList(List<KeyValue> companyList) {
-		this.companyList = companyList;
-	}
-	public List<KeyValue> getFormTypeList() {
-		return formTypeList;
-	}
-	public void setFormTypeList(List<KeyValue> formTypeList) {
-		this.formTypeList = formTypeList;
-	}
-	public List<KeyValue> getMandOptList() {
-		return mandOptList;
-	}
-	public void setMandOptList(List<KeyValue> mandOptList) {
-		this.mandOptList = mandOptList;
-	}
+//	public KeyValue[] getStateList() {
+//		return states;
+//	}
+//	public void setStateList(KeyValue[] states) {
+//		this.states = states;
+//	}
+//	public KeyValue[] getLobList() {
+//		return lobs;
+//	}
+//	public void setLobList(KeyValue[] lobs) {
+//		this.lobs = lobs;
+//	}
+//	public KeyValue[] getPolicyTypeList() {
+//		return policyTypes;
+//	}
+//	public void setPolicyTypeList(KeyValue[] policyTypes) {
+//		this.policyTypes = policyTypes;
+//	}
+//	public KeyValue[] getCompanyList() {
+//		return companies;
+//	}
+//	public void setCompanyList(KeyValue[] companies) {
+//		this.companies = companies;
+//	}
+//	public KeyValue[] getFormTypeList() {
+//		return formTypes;
+//	}
+//	public void setFormTypeList(KeyValue[] formTypes) {
+//		this.formTypes = formTypes;
+//	}
+//	public KeyValue[] getMandOptList() {
+//		return mandOpts;
+//	}
+//	public void setMandOptList(KeyValue[] mandOpts) {
+//		this.mandOpts = mandOpts;
+//	}
+//	public KeyValue[] getCoveragesList() {
+//		return coveragesList;
+//	}
+//	public void setCoveragesList(KeyValue[] coveragesList) {
+//		this.coveragesList = coveragesList;
+//	}
 
 	
 	

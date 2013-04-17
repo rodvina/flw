@@ -1,36 +1,30 @@
 package com.ksg.formslibrary.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.jms.Destination;
 import javax.jms.JMSException;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import com.kahg.jcf.errors.ApplicationException;
 import com.ksg.formslibrary.domain.Form;
 import com.ksg.formslibrary.domain.SearchCriteria;
-import com.ksg.formslibrary.jms.SynchronousJMS;
-import com.ksg.formslibrary.util.FormBuilder;
 
 @Service
 public class FormsLibraryServiceImpl implements FormsLibraryService {
 	private static final Logger log = Logger.getLogger(FormsLibraryServiceImpl.class);
-	
-	@Autowired
-	SynchronousJMS synchronousJMS;
-	
-	@Autowired
-	@Qualifier("searchDestination")
-	Destination searchDestination;
 
+	
 	@Autowired
-	@Qualifier("detailsDestination")
-	Destination detailsDestination;
+	RestTemplate restTemplate;
+	
+	private String restUrl = "http://localhost:9080/formslibraryservice/forms/company/{co}/search?formnumber={formnumber}";
 	
 	private List<Form> forms = new ArrayList<Form>();
 	
@@ -45,15 +39,13 @@ public class FormsLibraryServiceImpl implements FormsLibraryService {
 		// TODO Add logic to use client jar to
 		
 		String message = null;
-		try {
-			String response = synchronousJMS.send(message, searchDestination);
+		Map<String, String> urlVariables = new HashMap<String, String>();
+		urlVariables.put("co", "KP");
+		urlVariables.put("formnumber", searchCriteria.getFormNumber());
+		Form response = restTemplate.getForObject(restUrl, Form.class, urlVariables);
 			
-		} catch (JMSException e) {
-			log.error(message, e);
-			throw new FormsLibraryServiceException(e);
-		}
-		
 		List<Form> forms = new ArrayList<Form>();
+		forms = Arrays.asList(new Form[] {new Form()});
 
 		return forms;
 	}

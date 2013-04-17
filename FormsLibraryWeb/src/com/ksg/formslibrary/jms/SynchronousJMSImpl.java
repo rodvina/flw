@@ -14,7 +14,7 @@ import org.springframework.jms.core.SessionCallback;
 import org.springframework.jms.support.JmsUtils;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class SynchronousJMSImpl implements SynchronousJMS {
 
 	@Autowired

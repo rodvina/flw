@@ -31,7 +31,6 @@ public class DetailFormsController {
 	private static final Logger log = Logger.getLogger(DetailFormsController.class);
 
 	@Autowired
-	@Qualifier("mock")
 	private FormsLibraryService formsLibraryService;
 
 	

@@ -4,8 +4,10 @@
 <html>
 <head>        
 <style type="text/css" title="currentStyle">
+	@import "<%= request.getContextPath() %>/resources/css/normalize.min.css";
+	@import "<%= request.getContextPath() %>/resources/css/style.css";
 	@import "<%= request.getContextPath() %>/resources/css/demo_page.css";
-	@import "<%= request.getContextPath() %>/resources/css/demo_table.css";
+	@import "<%= request.getContextPath() %>/resources/css/jquery.dataTables.css";
 </style>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 		<script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
@@ -33,38 +35,37 @@
 					resultsTable.fnClearTable();
 				});
 				
-				$('#submitBtn').click(function() {
+				//$('#submitBtn').click(function() {
 					//ajax call
-					resultsTable.fnDraw();
-				});
+				//	resultsTable.fnDraw();
+				//});
 
 			} );
 		</script>
 </head>
 <body>
-<DIV style="margin: 6px">
+<DIV>
 
-<H3 style="margin-bottom: 3px">Search Criteria</H3>
-<form:form name="searchForm" method="post" action="${searchUrl}" modelAttribute="searchCriteria">
-
-	
+<H3>Search Criteria</H3>
+<form:form name="searchForm" method="post" action="/search" modelAttribute="searchCriteria">
 	<table width="757" border="0" id="searchTable">
 	  <tr>
 		<td width="244"><table width="100%" border="0" cellspacing="10">
 		  <tr>
 			<td width="193"><p><label for="formNumber">Form Number:</label><span class="input">
 	
-			  <form:input type="text" name="formNumber" path="formName"/>
+			  <form:input type="text" name="formNumber" path="formNumber"/>
 			  </span></p>
 			  <p><label for="formName">Form Name:</label><span class="input">
-				<form:input type="text" name="formName" path="formTitle"/>
+				<form:input type="text" name="formName" path="formName"/>
 				</span></p>
 			</td>
 
 			<td width="94"><label for="state">State:</label>
 			   <form:select size="5" name="state" path="states" itemValue="key" itemLabel="value">
-	  			<form:option value="00" label="All States"/>
+	  			<form:option value="00" label="All States"/> 
 	  			<form:options items="${listValues.stateList}" itemValue="key" itemLabel="value" />
+			 	
 			</form:select></td>
 			<td width="124"><label for="lob">Line Of Business</label>
 			  <form:select size="5" name="lob" path="lobs">
@@ -225,7 +226,7 @@
 					<c:out value="${form.formNumber}" />
 				</td>
 				<td>
-					<c:out value="${form.formTitle}" />
+					<c:out value="${form.formName}" />
 				</td>
 				<td>
 					<c:out value="${form.formType}" />

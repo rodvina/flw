@@ -14,14 +14,10 @@ import com.ksg.formslibrary.dao.ListValueDAO;
 import com.ksg.formslibrary.domain.ListValues;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:context/servletTest-context.xml"})
-//@ContextConfiguration(locations = {"classpath*:WEB-INF/FormsLibraryPortlet-portlet.xml"})
+@ContextConfiguration(locations = {"classpath*:context/restTest-context.xml"})
 //@ActiveProfiles(profiles="test")
 public class ListValueServiceImplTest {
 
-	@Autowired
-	ListValueDAO dao;
-	
 	@Autowired
 	ListValueService listValueService;
 	
@@ -30,12 +26,7 @@ public class ListValueServiceImplTest {
 	public void testGetListValues() {
 		ListValues listValues = listValueService.getListValues();
 		assertNotNull(listValues);
-		assertFalse(listValues.getCompanyList().isEmpty());
-		assertFalse(listValues.getFormTypeList().isEmpty());
-		assertFalse(listValues.getLobList().isEmpty());
-		assertFalse(listValues.getPolicyTypeList().isEmpty());
-		assertFalse(listValues.getStateList().isEmpty());
-		
+
 		
 	}
 

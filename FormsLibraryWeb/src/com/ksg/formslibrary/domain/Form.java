@@ -1,24 +1,22 @@
 package com.ksg.formslibrary.domain;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Form extends AbstractDomain {
 
 	private String formType;
 	private String formNumber;
 	private String formEdition;
-	private String formTitle;
+	private String formName;
 	private String status;
 	private int sequence;
-	private String state;
-	private String company;
-	private Date nbEffDate;
-	private Date nbExpDate;
-	private Date renEffDate;
-	private Date renExpDate;
-	private String lob;
-	private String policyType;
-	private String contractType;
+	private String urlDetail;
+	private String urlDocument;
+	
+	
+	private List<FormDetail> formDetails;
 	
 	public Form() {
 		super();
@@ -48,12 +46,12 @@ public class Form extends AbstractDomain {
 		this.formEdition = formEdition;
 	}
 
-	public String getFormTitle() {
-		return formTitle;
+	public String getFormName() {
+		return formName;
 	}
 
-	public void setFormTitle(String formTitle) {
-		this.formTitle = formTitle;
+	public void setFormName(String formName) {
+		this.formName = formName;
 	}
 
 	public String getStatus() {
@@ -72,77 +70,40 @@ public class Form extends AbstractDomain {
 		this.sequence = sequence;
 	}
 
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getCompany() {
-		return company;
-	}
-
-	public void setCompany(String company) {
-		this.company = company;
-	}
-
-	public Date getNbEffDate() {
-		return nbEffDate;
-	}
-
-	public void setNbEffDate(Date nbEffDate) {
-		this.nbEffDate = nbEffDate;
-	}
-
-	public Date getNbExpDate() {
-		return nbExpDate;
-	}
-
-	public void setNbExpDate(Date nbExpDate) {
-		this.nbExpDate = nbExpDate;
-	}
-
-	public Date getRenEffDate() {
-		return renEffDate;
-	}
-
-	public void setRenEffDate(Date renEffDate) {
-		this.renEffDate = renEffDate;
-	}
-
-	public Date getRenExpDate() {
-		return renExpDate;
-	}
-
-	public void setRenExpDate(Date renExpDate) {
-		this.renExpDate = renExpDate;
-	}
-
-	public String getLob() {
-		return lob;
-	}
-
-	public void setLob(String lob) {
-		this.lob = lob;
-	}
-
-	public String getPolicyType() {
-		return policyType;
-	}
-
-	public void setPolicyType(String policyType) {
-		this.policyType = policyType;
-	}
-
-	public String getContractType() {
-		return contractType;
-	}
-
-	public void setContractType(String contractType) {
-		this.contractType = contractType;
+	public List<FormDetail> getFormDetails() {
+		if (formDetails ==  null) {
+			formDetails = new ArrayList<FormDetail>();
+		}
+		return formDetails;
 	}
 	
+	public void addFormDetail(FormDetail formDetail) {
+		this.getFormDetails().add(formDetail);
+	}
+	
+	public void addAllFormDetail(List<FormDetail> list) {
+		this.getFormDetails().addAll(list);
+	}
+
+	public void setFormDetails(List<FormDetail> formDetails) {
+		this.formDetails = formDetails;
+	}
+
+	public String getUrlDocument() {
+		return urlDocument;
+	}
+
+	public void setUrlDocument(String urlDocument) {
+		this.urlDocument = urlDocument;
+	}
+
+	public String getUrlDetail() {
+		return urlDetail;
+	}
+
+	public void setUrlDetail(String urlDetail) {
+		this.urlDetail = urlDetail;
+	}
+
 	
 }

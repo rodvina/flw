@@ -17,7 +17,7 @@ import com.ksg.formslibrary.domain.SearchCriteria;
 import com.ksg.formslibrary.jms.SynchronousJMS;
 import com.ksg.formslibrary.util.FormBuilder;
 
-@Service
+//@Service
 @Qualifier("legacy")
 public class LegacyFormsLibraryServiceImpl implements FormsLibraryService {
 	private static final Logger log = Logger.getLogger(LegacyFormsLibraryServiceImpl.class);
@@ -55,8 +55,8 @@ public class LegacyFormsLibraryServiceImpl implements FormsLibraryService {
 		}
 		
 		List<Form> forms = new ArrayList<Form>();
-		Form form1 = new FormBuilder().formNumber("AK2343").formTitle("This is a test").build();
-		Form form2 = new FormBuilder().formNumber("BB1343").formTitle("This is a test").build();
+		Form form1 = new FormBuilder().formNumber("AK2343").formName("This is a test").build();
+		Form form2 = new FormBuilder().formNumber("BB1343").formName("This is a test").build();
 		forms.add(form1);
 		forms.add(form2);
 		return forms;

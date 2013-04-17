@@ -3,9 +3,10 @@ package com.ksg.formslibrary.domain;
 
 public class SearchCriteria extends AbstractDomain {
 
+
 	//form input values
+	String formNumber;
 	String formName;
-	String formTitle;
 	String[] states;
 	String[] lobs;
 	String[] policyTypes;
@@ -13,18 +14,19 @@ public class SearchCriteria extends AbstractDomain {
 	String formType;
 	String mandatoryOptional;
 	
+	public String getFormNumber() {
+		return formNumber;
+	}
+	public void setFormNumber(String formNumber) {
+		this.formNumber = formNumber;
+	}
 	public String getFormName() {
 		return formName;
 	}
 	public void setFormName(String formName) {
 		this.formName = formName;
 	}
-	public String getFormTitle() {
-		return formTitle;
-	}
-	public void setFormTitle(String formTitle) {
-		this.formTitle = formTitle;
-	}
+	
 	public String[] getStates() {
 		return states;
 	}
