@@ -13,11 +13,11 @@
 	<property name="usg.project.version" value="1.0" />
 
 	<!-- enterprise app properties --> 
-	<property name="usg.ear.project.name" value="FormsLibraryWebEAR" />
+	<property name="usg.ear.project.name" value="FormsLibraryWebApp" />
 	
 
 	<!-- ear properties -->
-	<property name="usg.ear.file.name" value="FormsLibraryWeb.ear" />
+	<property name="usg.ear.file.name" value="FormsLibraryWebApp.ear" />
 	
 
 	<!-- staging properties -->

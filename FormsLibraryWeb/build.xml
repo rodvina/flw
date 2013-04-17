@@ -8,6 +8,7 @@
 	<property name="usg.javac.source" value="1.7" />
 	<property name="usg.javac.target" value="1.7" />
 	
+	<property name="usg.test.use.jmockit" value="true" />
 	<property name="usg.was.home" value="${env.WAS_HOME_8.5}" />
 
 	<property file="${env.MBS_HOME_1.0}/master-default.properties" prefix="usg"/>
@@ -17,7 +18,7 @@
 	<property name="usg.project.version" value="1.0" />
 
 	<!-- enterprise app properties -->
-	<property name="usg.ear.project.name" value="FormsLibraryWebEAR" />
+	<property name="usg.ear.project.name" value="FormsLibraryWebApp" />
 	
 	<property name="usg.war.file.name" value="FormsLibraryWeb.war" />
 
@@ -41,7 +42,9 @@
 	<path id="build.classpath">
 		<fileset dir="${usg.build.dir}/WEB-INF/lib" includes="**/*.jar" />
 		<fileset dir="${usg.project.lib}" includes="**/*.jar" />
+<!--
 		<path refid="ear.lib" /> 
+-->
 		<path refid="was.lib" />
 		<pathelement path="${usg.src.dir}" />
 	</path>
