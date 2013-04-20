@@ -41,8 +41,10 @@ import dw.spring3.rest.bean.EmployeeList;
  *
  */
 @Controller("searchFormController")
-@RequestMapping(value = "/search")
+//@RequestMapping(value = "/search")
 public class SearchFormsController {
+	private static final String VIEW_SEARCH = "search";
+
 	private static final Logger log = Logger.getLogger(SearchFormsController.class);
 
 	@Autowired
@@ -55,18 +57,32 @@ public class SearchFormsController {
 	RestTemplate restTemplate;
 
 	
-	@RequestMapping(method=RequestMethod.GET)
-	public String showSearchCriteria() {
-		log.info("returning view for GET...");
-		return "searchView";
+	@RequestMapping(value = "/internal/search", method=RequestMethod.GET)
+	public String showSearchCriteriaForInternal(Model model) {
+		log.info("returning view for internal GET...");
+		model.addAttribute("showAdvance", true);
+		return VIEW_SEARCH;
+	}
+	
+	@RequestMapping(value = "/external/search", method=RequestMethod.GET)
+	public String showSearchCriteriaForExternal(Model model) {
+		log.info("returning view for external GET...");
+		model.addAttribute("showAdvance", false);
+		return VIEW_SEARCH;
 	}
 
 	/**
 	 * Returns reference data for list values
 	 * @return <code>ListValues</code>
 	 */
+//	@ModelAttribute(value="listValues")
+//	public ListValues setupListValues() {
+//		log.info("getting ModelAttribute for listValues...");
+//		return listValueService.getListValues();
+//	}
+	
 	@ModelAttribute(value="listValues")
-	public ListValues setupListValues() {
+	public Map<String, List<KeyValue>> setupListValues() {
 		log.info("getting ModelAttribute for listValues...");
 		return listValueService.getListValues();
 	}
@@ -97,8 +113,8 @@ public class SearchFormsController {
 		return new Form();
 	}
 	
-	@RequestMapping(method=RequestMethod.POST)
-	public String processSearch(@ModelAttribute("searchCriteria") SearchCriteria searchCriteria,
+	@RequestMapping(value = "/internal/search", method=RequestMethod.POST)
+	public String processSearchForInternal(@ModelAttribute("searchCriteria") SearchCriteria searchCriteria,
 			Model model) {
 		log.info("@RequestMapping...search for forms with critiria: " + searchCriteria);
 		
@@ -111,7 +127,7 @@ public class SearchFormsController {
 			e.printStackTrace();
 		}
 		model.addAttribute("searchResults", forms);
-		return "searchView";
+		return VIEW_SEARCH;
 
 	}
 	

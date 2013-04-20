@@ -14,6 +14,12 @@
 
 	<context:component-scan base-package="com.ksg.formslibrary" />
 	
+	<!-- needed for <spring:eval expression="@appProperties.getProperty -->
+	<util:properties id="appProperties" location="classpath:config.properties"/>
+
+	<!-- needed only if using @Value -->
+	<context:property-placeholder properties-ref="appProperties"/>
+	
 	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
 	</bean>
 

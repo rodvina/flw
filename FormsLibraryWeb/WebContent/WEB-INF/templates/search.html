@@ -4,15 +4,14 @@
 <!--
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 -->
-<style type="text/css" title="currentStyle">
-	@import "../../resources/css/normalize.min.css";
-	@import "../../resources/css/style.css";
-    @import "../../resources/css/demo_page.css";
-    @import "../../resources/css/jquery.dataTables.css";
-</style>
+
+<link rel="stylesheet" type="text/css" media="all" href="../../resources/css/normalize.min.css" th:href="@{/resources/css/normalize.min.css}"/>
+<link rel="stylesheet" type="text/css" media="all" href="../../resources/css/style.css" th:href="@{/resources/css/style.css}"/>
+<link rel="stylesheet" type="text/css" media="all" href="../../resources/css/demo_page.css" th:href="@{/resources/css/demo_page.css}"/>
+<link rel="stylesheet" type="text/css" media="all" href="../../resources/css/jquery.dataTables.css" th:href="@{/resources/css/jquery.dataTables.css}"/>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script type="text/javascript" language="javascript" src="../../resources/js/jquery.dataTables.min.js" th:src="@{/resources/js/jquery.dataTables.min.js}"></script>
-<script type="text/javascript" language="javascript" src="../../resources//js/jquery.dataTables.columnFilter.js"></script>
+
 <script type="text/javascript" language="javascript" src="../../resources/js/bPopup.js" th:src="@{/resources/js/bPopup.js}"></script>
 <script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
 
@@ -60,10 +59,11 @@
 
 </head>
 <body>
-<img alt="Kemper" src="../../resources/images/Kemper_Logo.png">
+<img alt="Kemper" src="../../resources/images/Kemper_Logo.png"
+	th:attr="src=@{/resources/images/Kemper_Logo.png}"/>
 
 <DIV>
-
+<form th:object="${searchCriteria}" th:action="@{/search}">
 
 <H3 align="center">Search Criteria</H3>
 <table border="0" id="searchTable" align="center">
@@ -83,9 +83,9 @@
             <input name="formName" type="text" style="width:100" maxlength="66" />
             </span></p></td>
         <td width="20%"><label for="state">State</label>
-           <select name="state" size="5" multiple="true">
-            <option selected="selected">-- Any --</option>
-				<option>Arkansas</option>
+           <select name="state" size="5" multiple="true" th:field="*{states}">
+            <option selected="selected" th:text="#{any.value}" th:value="#{any.code}" >-- Any ---</option>
+				<option th:each="state : #{listValues['stateList']}" th:text="${state.value}" th:value="${state.key}" th:remove="all">Arkansas</option>
 				<option>California</option>
 				<option>Colorado</option>
 				<option>Connecticut</option>
@@ -134,6 +134,7 @@
 				<option>West Virginia</option>                 
 				<option>Wisconsin</option>                     
 				<option>Wyoming</option>                       
+				<option>TEST DATA</option>
          </select></td>
         <td width="20%"><label for="lob">Line Of Business</label>
           <select name="lob" size="5" multiple="true">
@@ -352,10 +353,11 @@
 		</tr>
 	</table>
   <p>&nbsp;</p>
+  </form>
 </DIV>
 <div id="results"  class="hideme">
 <H3 align="center" style="margin-bottom: 3px">Search Results</H3>	
-<form action="detailsView-New.html" id="resultsForm">
+<form action="details.html" id="resultsForm">
 <table width="757" border="1" cellspacing="2" id="resultsTable" class="display" align="center">
   <thead>
   <tr>
@@ -369,49 +371,49 @@
   <tr>
     <td>AK18380389 </td>
     <td>FAIR CREDIT REPORTING ACT</td>
-    <td><div align="center"><a href="../../../testResources/mooreform.pdf"><img src="../../resources/images/icon_pdf.png" width="28" height="28"/></a></div></td>
-    <td><div align="center"><a href="detailsView-New.html"><img src="../../resources/images/viewDetails.gif" width="28" height="30"/></a></div></td>
+    <td><div align="center"><a href="../../../testResources/mooreform.pdf"><img src="../../resources/images/icon_pdf.png" th:attr="src=@{/resources/images/icon_pdf.png}" width="28" height="28"/></a></div></td>
+    <td><div align="center"><a href="details.html"><img src="../../resources/images/viewDetails.gif" th:attr="src=@{/resources/images/viewDetails.gif}" width="28" height="30"/></a></div></td>
     
     </tr>
   <tr>
     <td>AK31610290 </td>
     <td>FAIR CREDIT/PRIVACY LAW</td>
-    <td><div align="center"><a href="../../../testResources/mooreform.pdf"><img src="../../resources/images/icon_pdf.png" width="28" height="28"/></a></div></td>
-    <td><div align="center"><a href="detailsView-New.html"><img src="../../resources/images/viewDetails.gif" width="28" height="30"/></a></div></td>
+    <td><div align="center"><a href="../../../testResources/mooreform.pdf"><img src="../../resources/images/icon_pdf.png" th:attr="src=@{/resources/images/icon_pdf.png}" width="28" height="28"/></a></div></td>
+    <td><div align="center"><a href="details.html"><img src="../../resources/images/viewDetails.gif" th:attr="src=@{/resources/images/viewDetails.gif}" width="28" height="30"/></a></div></td>
     
     </tr>
   <tr>
     <td>AK53550606</td>
     <td>Fair Credit Reporting Act-Impt Notice</td>
-    <td><div align="center"><a href="../../../testResources/mooreform.pdf"><img src="../../resources/images/icon_pdf.png" width="28" height="28"/></a></div></td>
-    <td><div align="center"><a href="detailsView-New.html"><img src="../../resources/images/viewDetails.gif" width="28" height="30"/></a></div></td>
+    <td><div align="center"><a href="../../../testResources/mooreform.pdf"><img src="../../resources/images/icon_pdf.png" th:attr="src=@{/resources/images/icon_pdf.png}" width="28" height="28"/></a></div></td>
+    <td><div align="center"><a href="details.html"><img src="../../resources/images/viewDetails.gif" th:attr="src=@{/resources/images/viewDetails.gif}" width="28" height="30"/></a></div></td>
     
     </tr>
   <tr>
     <td>AK53550606</td>
     <td>Fair Credit Reporting Act-Impt Notice</td>
-    <td><div align="center"><a href="../../../testResources/mooreform.pdf"><img src="../../resources/images/icon_pdf.png" width="28" height="28"/></a></div></td>
-    <td><div align="center"><a href="detailsView-New.html"><img src="../../resources/images/viewDetails.gif" width="28" height="30"/></a></div></td>
+    <td><div align="center"><a href="../../../testResources/mooreform.pdf"><img src="../../resources/images/icon_pdf.png" th:attr="src=@{/resources/images/icon_pdf.png}" width="28" height="28"/></a></div></td>
+    <td><div align="center"><a href="details.html"><img src="../../resources/images/viewDetails.gif" th:attr="src=@{/resources/images/viewDetails.gif}" width="28" height="30"/></a></div></td>
     
     </tr>
   <tr>
     <td>AK56010309</td>
     <td>Fair Credit Reporting Act-IMPT Notice</td>
-    <td><div align="center"><a href="../../../testResources/mooreform.pdf"><img src="../../resources/images/icon_pdf.png" width="28" height="28"/></a></div></td>
-    <td><div align="center"><a href="detailsView-New.html"><img src="../../resources/images/viewDetails.gif" width="28" height="30"/></a></div></td>
+    <td><div align="center"><a href="../../../testResources/mooreform.pdf"><img src="../../resources/images/icon_pdf.png" th:attr="src=@{/resources/images/icon_pdf.png}" width="28" height="28"/></a></div></td>
+    <td><div align="center"><a href="details.html"><img src="../../resources/images/viewDetails.gif" th:attr="src=@{/resources/images/viewDetails.gif}" width="28" height="30"/></a></div></td>
     
     </tr>
   <tr>
     <td>AK56011212</td>
     <td>Fair Credit Reporting Act - Important Notice</td>
-    <td><div align="center"><a href="../../../testResources/mooreform.pdf"><img src="../../resources/images/icon_pdf.png" width="28" height="28"/></a></div></td>
-    <td><div align="center"><a href="detailsView-New.html"><img src="../../resources/images/viewDetails.gif" width="28" height="30"/></a></div></td>
+    <td><div align="center"><a href="../../../testResources/mooreform.pdf"><img src="../../resources/images/icon_pdf.png" th:attr="src=@{/resources/images/icon_pdf.png}" width="28" height="28"/></a></div></td>
+    <td><div align="center"><a href="details.html"><img src="../../resources/images/viewDetails.gif" th:attr="src=@{/resources/images/viewDetails.gif}" width="28" height="30"/></a></div></td>
     </tr>
   <tr>
     <td>K56261212</td>
     <td>Fair Credit Reporting Act - Important Notice</td>
-    <td><div align="center"><a href=""><img src="../../resources/images/icon_pdf.png" width="28" height="28"/></a></div></td>
-    <td><div align="center"><a href="detailsView-New.html"><img src="../../resources/images/viewDetails.gif" width="28" height="30"/></a></div></td>
+    <td><div align="center"><a href=""><img src="../../resources/images/icon_pdf.png" th:attr="src=@{/resources/images/icon_pdf.png}" width="28" height="28"/></a></div></td>
+    <td><div align="center"><a href="details.html"><img src="../../resources/images/viewDetails.gif" th:attr="src=@{/resources/images/viewDetails.gif}" width="28" height="30"/></a></div></td>
     </tr>
   </tbody>
   </table>

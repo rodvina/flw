@@ -6,10 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.jms.JMSException;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,7 +23,8 @@ public class FormsLibraryServiceImpl implements FormsLibraryService {
 	@Autowired
 	RestTemplate restTemplate;
 	
-	private String restUrl = "http://localhost:9080/formslibraryservice/forms/company/{co}/search?formnumber={formnumber}";
+	@Value("${service.url.${env}}${listval.url.path}")
+	private String searchUrl;// = "http://localhost:9080/formslibraryservice/forms/company/{co}/search?formnumber={formnumber}";
 	
 	private List<Form> forms = new ArrayList<Form>();
 	
@@ -40,9 +40,9 @@ public class FormsLibraryServiceImpl implements FormsLibraryService {
 		
 		String message = null;
 		Map<String, String> urlVariables = new HashMap<String, String>();
-		urlVariables.put("co", "KP");
+		urlVariables.put("afl", "KP");
 		urlVariables.put("formnumber", searchCriteria.getFormNumber());
-		Form response = restTemplate.getForObject(restUrl, Form.class, urlVariables);
+		Form response = restTemplate.getForObject(searchUrl, Form.class, urlVariables);
 			
 		List<Form> forms = new ArrayList<Form>();
 		forms = Arrays.asList(new Form[] {new Form()});

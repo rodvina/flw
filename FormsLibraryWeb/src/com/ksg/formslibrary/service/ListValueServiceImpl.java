@@ -1,10 +1,12 @@
 package com.ksg.formslibrary.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -13,10 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.ksg.formslibrary.domain.ListValues;
-
-import dw.spring3.rest.bean.Employee;
-import dw.spring3.rest.bean.EmployeeList;
+import com.ksg.formslibrary.domain.KeyValue;
 
 @Service
 public class ListValueServiceImpl implements ListValueService {
@@ -25,53 +24,38 @@ public class ListValueServiceImpl implements ListValueService {
 	@Autowired
 	RestTemplate restTemplate;
 	
-	private String url = "http://127.0.0.1:9080/formslibraryservice/listval/company/KP/list";
+	@Value("${service.url.${env}}${listval.url.path}")
+	String urlListVal;
+	
+//	private String url = "http://127.0.0.1:9080/formslibraryservice/listval/company/KP/list";
 	
 	/**
 	 * Returns available search criteria
 	 */
 	@Override
-	public ListValues getListValues() {
-		log.info("getting list values from restful service: " + url);
+	public Map<String, List<KeyValue>> getListValues() {
+		log.info("getting list values from restful service: " + urlListVal);
 		//Create a list for the message converters
 	
 		Map<String, String> urlVariables = new HashMap<String, String>();
-		urlVariables.put("co", "kp");
-		//rest call with json response expected in the form of
-		//{states : [ {"key":"CO", "value":"Colorado", "pattern":"a[20]"},...], lobs : []
-		
-//		listValues = restTemplate.getForObject(url, ListValues.class);
-//		listValues.setStateList(Arrays.asList(new KeyValue[] {new KeyValue("02", "California")}));
-		
-//		this.callTestRest();
+		urlVariables.put("afl", "KP");
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<String> entity = new HttpEntity<String>(headers);
 		
-		ResponseEntity<ListValues> response = restTemplate.exchange(
-				url, 
-				HttpMethod.GET, entity, ListValues.class);
+		ResponseEntity<Map> response = restTemplate.exchange(
+				urlListVal, 
+				HttpMethod.GET, entity, Map.class, urlVariables);
 		
-		ListValues listValues = response.getBody();
+		Map<String, List<KeyValue>> listValues = response.getBody();
+		for (String key :listValues.keySet()) {
+			log.info(key);
+			log.info(listValues.get(key));
+		}
 		return listValues;
 	}
-	
-	private void callTestRest() {
-		String url = "http://localhost:9080/RESTClientIBM/service/emps";
-		log.info("calling RESTClientIBM: " + url);
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<String> entity = new HttpEntity<String>(headers);
-				
-		ResponseEntity<EmployeeList> response = restTemplate.exchange(
-				url, 
-				HttpMethod.GET, entity, EmployeeList.class);
-		
-		EmployeeList employees = response.getBody();
-		for(Employee e : employees.getEmployees()) {
-			System.out.println(e.getId() + ": " + e.getName());
-		}
-	}
+
+
 
 }

@@ -1,16 +1,18 @@
 package com.ksg.formslibrary.domain;
 
+import java.util.List;
+
 
 public class SearchCriteria extends AbstractDomain {
-
 
 	//form input values
 	String formNumber;
 	String formName;
-	String[] states;
-	String[] lobs;
-	String[] policyTypes;
-	String[] company;
+	List<String> states;
+	List<String> lobs;
+	List<String> policyTypes;
+	List<String> company;
+	List<String> coverages;
 	String formType;
 	String mandatoryOptional;
 	
@@ -27,30 +29,6 @@ public class SearchCriteria extends AbstractDomain {
 		this.formName = formName;
 	}
 	
-	public String[] getStates() {
-		return states;
-	}
-	public void setStates(String[] states) {
-		this.states = states;
-	}
-	public String[] getLobs() {
-		return lobs;
-	}
-	public void setLobs(String[] lobs) {
-		this.lobs = lobs;
-	}
-	public String[] getPolicyTypes() {
-		return policyTypes;
-	}
-	public void setPolicyTypes(String[] policyTypes) {
-		this.policyTypes = policyTypes;
-	}
-	public String[] getCompany() {
-		return company;
-	}
-	public void setCompany(String[] company) {
-		this.company = company;
-	}
 	public String getFormType() {
 		return formType;
 	}
@@ -62,6 +40,37 @@ public class SearchCriteria extends AbstractDomain {
 	}
 	public void setMandatoryOptional(String mandatoryOptional) {
 		this.mandatoryOptional = mandatoryOptional;
-	}	
+	}
+	public List<String> getCoverages() {
+		return coverages;
+	}
+	public void setCoverages(List<String> coverages) {
+		this.coverages = coverages;
+	}
+	public List<String> getStates() {
+		return states;
+	}
+	public void setStates(List<String> states) {
+		this.states = states;
+	}
+	public List<String> getLobs() {
+		return lobs;
+	}
+	public void setLobs(List<String> lobs) {
+		this.lobs = lobs;
+	}
+	public List<String> getPolicyTypes() {
+		return policyTypes;
+	}
+	public void setPolicyTypes(List<String> policyTypes) {
+		this.policyTypes = policyTypes;
+	}
+	public List<String> getCompany() {
+		return company;
+	}
+	public void setCompany(List<String> company) {
+		this.company = company;
+	}
+
 	
 }
