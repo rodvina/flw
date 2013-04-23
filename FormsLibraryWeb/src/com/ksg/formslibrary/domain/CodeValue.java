@@ -1,39 +1,35 @@
 package com.ksg.formslibrary.domain;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+/**
+ * Encapsulates attribute values from Resource Categories
+ *
+ */
+public class CodeValue extends AbstractDomain {
 
-
-
-
-
-
-public class KeyValue extends AbstractDomain {
-
-	@JsonProperty(value="code")
-	String key;
+	String code;
 	String value;
 	String pattern;
 	
-	public KeyValue() {
+	public CodeValue() {
 		
 	}
 	
-	public KeyValue(String key, String value) {
-		this.key = key;
+	public CodeValue(String code, String value) {
+		this.code = code;
 		this.value = value;
 	}
 	
-	public KeyValue(String key, String value, String pattern) {
-		this.key = key;
+	public CodeValue(String code, String value, String pattern) {
+		this.code = code;
 		this.value = value;
 		this.pattern = pattern;
 	}
 	
-	public String getKey() {
-		return key;
+	public String getCode() {
+		return code;
 	}
-	public void setKey(String key) {
-		this.key = key;
+	public void setCode(String code) {
+		this.code = code;
 	}
 	public String getValue() {
 		return value;

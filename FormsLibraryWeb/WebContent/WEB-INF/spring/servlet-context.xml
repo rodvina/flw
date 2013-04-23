@@ -4,21 +4,33 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:ehcache="http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
-		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
-
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+        http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd">
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 
 	<!-- Required for Spring MVC to dispatch requests to @Controllers -->
     <annotation-driven/>
     
+    <!-- Enables ehcache -->
+    <ehcache:annotation-driven cache-manager="cacheManager"/>
+    
+    <beans:bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+    	<beans:property name="configLocation" value="classpath:ehcache.xml"/>
+    </beans:bean>
+    
+    <!-- Enables conversion service for formatting and conversions -->
+    <beans:bean id="conversionService"
+          class="org.springframework.format.support.FormattingConversionServiceFactoryBean"/>
+          
      <!-- needed for <spring:eval expression="@appProperties.getProperty -->
-	<util:properties id="appProperties" location="classpath:config.properties"/>
+	<util:properties id="props" location="classpath:config.properties"/>
 
 	<!-- needed only if using @Value -->
-	<context:property-placeholder properties-ref="appProperties"/>
+	<context:property-placeholder properties-ref="props"/>
     
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />

@@ -10,12 +10,12 @@
 
     <defaultCache eternal="false" maxElementsInMemory="1000"
         overflowToDisk="false" diskPersistent="false" timeToIdleSeconds="0"
-        timeToLiveSeconds="600" memoryStoreEvictionPolicy="LRU"/>
+        timeToLiveSeconds="10" memoryStoreEvictionPolicy="LRU"/>
 
     <cache name="listValCache" eternal="false"
         maxElementsInMemory="1" overflowToDisk="false" diskPersistent="false"
         timeToIdleSeconds="0"
-        timeToLiveSeconds="5"  
+        timeToLiveSeconds="2419200"  
         memoryStoreEvictionPolicy="LRU" />
                 <!-- timeToLiveSeconds="2419200" -->
 

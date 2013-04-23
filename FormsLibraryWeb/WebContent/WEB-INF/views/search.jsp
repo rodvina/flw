@@ -64,46 +64,45 @@
 	  <tr>
 		<td width="244"><table width="100%" border="0" cellspacing="10">
 		  <tr>
-			<td width="193"><p><label for="formNumber">Form Number:</label><span class="input">
-	
+			<td width="193"><p><label for="formNumber"><fmt:message key='label.formnumber'/></label><span class="input">
 			  <form:input type="text" name="formNumber" path="formNumber"/>
 			  </span></p>
-			  <p><label for="formName">Form Name:</label><span class="input">
+			  <p><label for="formName"><fmt:message key='label.formname'/></label><span class="input">
 				<form:input type="text" name="formName" path="formName"/>
 				</span></p>
 			</td>
 
-			<td width="94"><label for="state">State:</label>
+			<td width="94"><label for="state"><fmt:message key='label.state'/></label>
 			<!-- form:options does not work when evaluating hashmap expression
 			-->
 	 		   <form:select size="5" name="state" path="states">
 	  			<option value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
-	  			<c:forEach items="${listValues['stateList']}" var="state">
-			       <form:option value="${state.key}" label="${state.value}"/>
+	  			<c:forEach items="${listValues['states']}" var="state">
+			       <form:option value="${state.code}" label="${state.value}"/>
 			   </c:forEach>
 			</form:select>
 
 			</td>
-			<td width="124"><label for="lob">Line Of Business</label>
+			<td width="124"><label for="lob"><fmt:message key='label.lob'/></label>
 			  <form:select size="5" name="lob" path="lobs">
 	  			<option selected="selected" value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
-				<c:forEach items="${listValues['lobList']}" var="lob">
-			       <form:option value="${lob.key}" label="${lob.value}" />
+				<c:forEach items="${listValues['lobs']}" var="lob">
+			       <form:option value="${lob.code}" label="${lob.value}" />
 			   </c:forEach>
 
 			</form:select></td>
-			<td width="108"><label for="contractType">Contract Type</label>
-			  <form:select size="5" name="contractType" path="policyTypes">
+			<td width="108"><label for="contractType"><fmt:message key='label.contracttype'/></label>
+			  <form:select size="5" name="contractType" path="contractTypes">
 	  			<option value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
-	  			<c:forEach items="${listValues['policyTypeList']}" var="policyType" >
-	  				<form:option value="${policyType.key }" label="${policyType.value }" />
+	  			<c:forEach items="${listValues['contractTypes']}" var="contractType" >
+	  				<form:option value="${contractType.code }" label="${contractType.value }" />
 	  			</c:forEach>
 			</form:select></td>
-			<td width="192"><label for="company">Company</label>
-			  <form:select size="5" name="company" path="company">
+			<td width="192"><label for="company"><fmt:message key='label.company'/></label>
+			  <form:select size="5" name="company" path="companies">
 	  			<option value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
-	  			<c:forEach items="${listValues['companyList']}" var="company" >
-	  				<form:option value="${company.key }" label="${company.value }" />
+	  			<c:forEach items="${listValues['companies']}" var="company" >
+	  				<form:option value="${company.code }" label="${company.value }" />
 	  			</c:forEach>
 			</form:select></td>
 			</tr>
@@ -112,109 +111,118 @@
 	</table>
 
 <c:if test="${showAdvance == true}" >	
-<table width="985">
+<table>
     <tr><td><a href="#" id="advancedLink">Advanced Search</a></td></tr>
 		<tr>
 		<td>
 		<div id="advancedFields" class="hideme">
 		  <table width="751" border="0" cellspacing="10">
 		    <tr>
-			    <td width="214"><label>Form Type:
-			      <select name="formType2" size="3" multiple >
-			        <option value="00">-- Any --
-		            <option>Amendatory
-		            <option>Endorsement
-	                <option>Insert
-	                <option>Contract
-                    <option>Jacket
-                    <option>Special Insert
-                    <option>Customer Docs
-                    <option>Billing
-                    <option>U/W Correspondence
-                    <option>Credit                  
-                  </select>
-			    </label></td>
-			    <td width="218"><label>Print Category:</label>
-			      <select name="printCat" size="3" multiple id="printCat" >
-			        <option>Always First</option>
-			        <option>Before Dec Insert</option>
-			        <option>Special</option>
-			        <option>Declarations</option>
-			        <option>Schedules (SPP/EE)</option>
-			        <option>After Dec Insert</option>
-			        <option>Policy Jacket</option>
-			        <option>Policy Contract</option>
-			        <option>Amendatory</option>
-			        <option>Priority Endorsement</option>
-		          </select>
+			    <td width="214"><label><fmt:message key='label.formtype'/></label>
+			  <form:select size="3" name="formType" path="formTypes">
+	  			<option value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
+	  			<c:forEach items="${listValues['formTypes']}" var="formType" >
+	  				<form:option value="${formType.code }" label="${formType.value }" />
+	  			</c:forEach>
+			</form:select>
 			    </td>
-			    <td width="283"><label>Coverage Code:</label>
+			    <td width="218"><label><fmt:message key='label.printcat'/></label>
+			    <form:select size="3" name="printCategory" path="printCategories">
+		  			<option value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
+		  			<c:forEach items="${listValues['printCategories']}" var="printCategory" >
+		  				<form:option value="${printCategory.code }" label="${printCategory.value }" />
+		  			</c:forEach>
+		  		</form:select>
+			    </td>
+			    <td width="283"><label><fmt:message key='label.coverage'/></label>
               	<form:select size="3" name="coverage" path="coverages">
 		  			<option selected="selected" value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
-		  			<c:forEach items="${listValues['coverageList']}" var="coverage" >
-		  				<form:option value="${coverage.key }" label="${coverage.value }" />
+		  			<c:forEach items="${listValues['coverageCodes']}" var="coverage" >
+		  				<form:option value="${coverage.code }" label="${coverage.value }" />
 		  			</c:forEach>
 				</form:select>
               </td>
 		    </tr>
 			  <tr>
-			    <td>Event:<br>
-<select name="formType" size="3" multiple >
-		          <option value="00">-- Any --
-		            <option>All
-		            <option value="ADD">New Business
-	                <option value="MOD">Amendment
-	                <option>Renewal
-                    <option>Cancellation
-                    <option>NP Cancel
-                    <option>Finalization
-                    <option>Special Conversion
-                    <option>Kemper Conversion
-                    <option>Rewrite
-                </select></td>
-			    <td>Bulk Renewal:<br>
-<select name="formType3" size="3" multiple >
-		          <option value="00">-- Any --
-		            <option>TBD
-		            <option>TBD
-		            <option>TBD
-		            <option>TBD
-                </select></td>
-			    <td>Rule ID:
-			      <select name="ruleId" size="3" multiple id="ruleId" >
-			        <option value="00">-- Any --
-		            <option>PCS - Consumer Report Disclosure
-		            <option>Mueller - Consumer Report Disclosure
-	                <option>LexisNexis - Consumer Report Disclosure 
-	                <option>Owner Occupied 
-                    <option>OWNER Occupied or no Coverage A 
-                </select></td>
+			    <td><label><fmt:message key='label.event'/></label>
+              	<form:select size="3" name="event" path="events">
+		  			<option selected="selected" value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
+		  			<c:forEach items="${listValues['events']}" var="event" >
+		  				<form:option value="${event.code }" label="${event.value }" />
+		  			</c:forEach>
+				</form:select>
+				</td>
+			    <td><label><fmt:message key='label.bulkrenewal'/></label>
+              	<form:select size="3" name="event" path="events">
+		  			<option selected="selected" value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
+		  			<c:forEach items="${listValues['bulkRenewals']}" var="bulkRenewal" >
+		  				<form:option value="${bulkRenewal.code }" label="${bulkRenewal.value }" />
+		  			</c:forEach>
+				</form:select>
+				</td>
+				<td><label><fmt:message key='label.ruleid'/></label>
+              	<form:select size="3" name="ruleid" path="ruleIds">
+		  			<option selected="selected" value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
+		  			<c:forEach items="${listValues['ruleIds']}" var="ruleId" >
+		  				<form:option value="${ruleId.code }" label="${ruleId.value }" />
+		  			</c:forEach>
+				</form:select>
+				</td>
 		      </tr>
 			  <tr>
-			    <td>NB Eff Date:
-		        <input name="nbEffDate" type="date" id="nbEffDate"></td>
-			    <td>NB Exp Date:
-		        <input name="nbExpDate" type="date" id="nbExpDate"></td>
-			    <td><p>Premium Indicator:<br>
-<select name="contractType3" size="3" multiple id="contractType3" >
-                    <option>-- Any --</option>
-                      <option value="00">Y</option>
-                      <option>N</option>
-                    </select>
-			    </p></td>
-		    </tr>
+			    <td><label for="nbEffDate"><fmt:message key='label.nbeffdate'/></label>
+		        	<form:input path="nbEffDate" type="date" id="nbEffDate"/>
+		        	<form:errors path="nbEffDate" cssClass="error"/>
+		        </td>
+			    <td><label for="nbExpDate"><fmt:message key='label.nbexpdate'/></label>
+		        	<input name="nbExpDate" type="date" id="nbExpDate">
+		        </td>
+			    <td><label><fmt:message key='label.premind'/></label>
+	              	<form:select size="3" name="premind" path="premIndicators">
+			  			<option selected="selected" value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
+			  			<c:forEach items="${listValues['premIndicators']}" var="premIndicator" >
+			  				<form:option value="${premIndicator.code }" label="${premIndicator.value }" />
+			  			</c:forEach>
+					</form:select>
+			    </td>
+		    	</tr>
 			  <tr>
-			    <td>REN Eff Date:<br>
-                <input name="renEffDate" type="date" id="renEffDate"></td>
-			    <td>REN Eff Date:<br>
-                <input name="renExpDate" type="date" id="renExpDate"></td>
-			    <td>Level Indicator:<br>
-<select name="levelIndicator2" size="3" multiple id="levelIndicator2" >
-                  <option></option>
-                    <option>Policy</option>
-                    <option value="00">Activity</option>
-                </select></td>
-		    </tr>
+			    <td><label for="renEffDate"><fmt:message key='label.reneffdate'/></label>
+		        	<input name="renEffDate" type="date" id="renEffDate">
+		        </td>
+			    <td><label for="renExpDate"><fmt:message key='label.renexpdate'/></label>
+		        	<input name="renExpDate" type="date" id="renExpDate">
+		        </td>
+			    <td><label><fmt:message key='label.levelind'/></label>
+	              	<form:select size="3" name="levelind" path="levelIndicators">
+			  			<option selected="selected" value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
+			  			<c:forEach items="${listValues['levelIndicators']}" var="levelIndicator" >
+			  				<form:option value="${levelIndicator.code }" label="${levelIndicator.value }" />
+			  			</c:forEach>
+					</form:select>
+			    </td>
+		      </tr>
+			  <tr>
+			    <td><label for="procDate"><fmt:message key='label.procdate'/></label>
+		        	<input name="procDate" type="date" id="procDate">
+		        </td>
+			    <td><label for="modDate"><fmt:message key='label.moddate'/></label>
+		        	<input name="modDate" type="date" id="modDate">
+		        </td>
+			    <td><label><fmt:message key='label.formId'/></label>
+					<input name="formId" type="text" id="formId">
+			    </td>
+		      </tr>
+		      <tr>
+			    <td><label><fmt:message key='label.status'/></label>
+	              	<form:select size="3" name="status" path="statuses" multiple="false">
+			  			<option selected="selected" value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
+			  			<c:forEach items="${listValues['statuses']}" var="status" >
+			  				<form:option value="${status.code }" label="${status.value }" />
+			  			</c:forEach>
+					</form:select>
+			    </td>
+		      </tr>
 		  </table>
         </div>
 		</td>
@@ -229,7 +237,7 @@
 	</table>
 </form:form>
 
-<form:form name="resultsForm" method="post" action="${detailUrl}" modelAttribute="theform">	
+<form:form name="resultsForm" method="post" action="detail" modelAttribute="theform">	
 	<DIV style="margin: 12px; margin-bottom: 36px">
 	
 		<table id="resultsTable" class="datatable">
@@ -242,7 +250,6 @@
 		</tr>
 		</thead>
 		<tbody>
-		<!-- s
 		<c:forEach var="form" items="${searchResults}">
 			<tr>
 				<td>
@@ -256,11 +263,10 @@
 				</td>
 				<td>
 					<form:button value="View Details"/>
-					<input type="hidden" value="${form.formNumber }" name="formname"/>
+					<input type="hidden" value="${form.urlDetail }" name="urlDetail"/>
 				</td>									
 			</tr>
 		</c:forEach>
-		 -->
 		</tbody>
 		</table>
 	

@@ -22,6 +22,10 @@ img {
 	border: 0;
 }
 
+.error {
+	color: red;
+}
+
 /**
  * override styles in jquery-ui.css
  */

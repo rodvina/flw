@@ -24,9 +24,9 @@ import com.ksg.formslibrary.service.FormsLibraryServiceException;
  * Controller class for rendering form details.
  *
  */
-@Controller
-@RequestMapping(value = "/details")
-@SessionAttributes(value = {"searchCriteria", "searchResults"})
+//@Controller
+//@RequestMapping(value = "/details")
+//@SessionAttributes(value = {"searchCriteria", "searchResults"})
 public class DetailFormsController {
 	private static final Logger log = Logger.getLogger(DetailFormsController.class);
 

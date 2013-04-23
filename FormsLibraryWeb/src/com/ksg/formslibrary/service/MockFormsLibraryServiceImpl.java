@@ -31,7 +31,7 @@ public class MockFormsLibraryServiceImpl implements FormsLibraryService {
 	}
 
 	@Override
-	public List<Form> search(SearchCriteria searchCriteria) throws FormsLibraryServiceException {
+	public List<Form> search(String affiliate, SearchCriteria searchCriteria) throws FormsLibraryServiceException {
 		log.info("searching for forms based on the following criteria: " + searchCriteria);
 		// TODO Add logic to use client jar to
 		

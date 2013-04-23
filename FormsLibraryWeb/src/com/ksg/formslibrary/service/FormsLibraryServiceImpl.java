@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.ksg.formslibrary.domain.Form;
 import com.ksg.formslibrary.domain.SearchCriteria;
+import com.ksg.formslibrary.util.UrlVariable;
 
 @Service
 public class FormsLibraryServiceImpl implements FormsLibraryService {
@@ -23,7 +24,7 @@ public class FormsLibraryServiceImpl implements FormsLibraryService {
 	@Autowired
 	RestTemplate restTemplate;
 	
-	@Value("${service.url.${env}}${listval.url.path}")
+	@Value("${service.url.${env}}${search.url.path}")
 	private String searchUrl;// = "http://localhost:9080/formslibraryservice/forms/company/{co}/search?formnumber={formnumber}";
 	
 	private List<Form> forms = new ArrayList<Form>();
@@ -34,20 +35,17 @@ public class FormsLibraryServiceImpl implements FormsLibraryService {
 	}
 
 	@Override
-	public List<Form> search(SearchCriteria searchCriteria) throws FormsLibraryServiceException {
+	public List<Form> search(String affiliate, SearchCriteria searchCriteria) throws FormsLibraryServiceException {
 		log.info("searching for forms based on the following criteria: " + searchCriteria);
-		// TODO Add logic to use client jar to
 		
+		//TODO: Convert searchCriteria to searchParams
 		String message = null;
 		Map<String, String> urlVariables = new HashMap<String, String>();
-		urlVariables.put("afl", "KP");
-		urlVariables.put("formnumber", searchCriteria.getFormNumber());
-		Form response = restTemplate.getForObject(searchUrl, Form.class, urlVariables);
-			
-		List<Form> forms = new ArrayList<Form>();
-		forms = Arrays.asList(new Form[] {new Form()});
+		urlVariables.put(UrlVariable.afl.toString(), affiliate);
+		log.info("calling REST url:" + searchUrl);
+		List<Form> response = restTemplate.getForObject(searchUrl, List.class, urlVariables);
 
-		return forms;
+		return response;
 	}
 
 	@Override
