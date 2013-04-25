@@ -71,7 +71,7 @@ public class DetailFormsController {
 	@RequestMapping(value="{afl}/internal/detail", method=RequestMethod.GET)
 	public String processGetFormLink(@RequestParam String url, 
 			@RequestParam String formNumber, @RequestParam String formType,
-			@RequestParam String formEdition, @RequestParam String formTitle,
+			@RequestParam String formEdition,
 			@RequestParam String sequence, @RequestParam String status,
 			@RequestParam String formId, @RequestParam String formName,
 			Model model) {

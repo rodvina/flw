@@ -23,7 +23,20 @@
 <script>
 	
 			$(document).ready(function() {
+				
+				$('#detailsData1').html('<table border="0" cellspacing="5" id="testdata">')
+				$('#testdata').dataTable({
+					"sAjaxSource": '${url}',
+					"sAjaxDataProp": "formDetails",
+					"aoColumns": [
+						{"sTitle":"State", "mData":"state", "aTargets":[0] },
+						{"sTitle":"LOB", "mData":"lob", "aTargets":[1] },
+						{"sTitle":"Company", "mData":"company", "aTargets":[2] },
+						{"sTitle":"NB Eff Date", "mData":"nbEffDate", "aTargets":[3] },
+						{"sTitle":"NB Exp Date", "mData":"nbExpDate", "aTargets":[4] }					
+					]
 
+				});
 				$('#detailsData').html('<table border="0" cellspacing="5" id="detailsTable">')
 				$('#detailsTable').dataTable({
 					//"sDom": '<"H"Tfr>t<"F"ip>',
@@ -33,7 +46,8 @@
 					"bFilter": true, 
 					"oLanguage": {
 				      "sSearch": "Filter data:",
-					  "sInfo": ""
+					  "sInfo": "",
+					  "sInfoFiltered":"_TOTAL_ filtered from _MAX_ total records"
 				    },
 					"oTableTools": {
 						"aButtons": [
@@ -45,14 +59,14 @@
 					"sAjaxSource": '${url}',
 					"sAjaxDataProp": "formDetails",
 					"aoColumnDefs":[
-						{"sTitle":"State", "mData":"state", "aTargets":[0] },
-						{"sTitle":"LOB", "mData":"lob", "aTargets":[1] },
-						{"sTitle":"Company", "mData":"company", "aTargets":[2] },
-						{"sTitle":"NB Eff Date", "mData":"nbEffDate", "aTargets":[3] },
-						{"sTitle":"NB Exp Date", "mData":"nbExpDate", "aTargets":[4] },
-						{"sTitle":"Ren Eff Date", "mData":"renEffDate", "aTargets":[5] },
-						{"sTitle":"Ren Exp Date", "mData":"renExpDate", "aTargets":[6] },
-						{"sTitle":"Contract Type", "mData":"contractType", "aTargets":[7] }
+						{"sTitle":"<fmt:message key='header.0'/>", "mData":"<fmt:message key='data.0'/>", "aTargets":[0] },
+						{"sTitle":"<fmt:message key='header.1'/>", "mData":"<fmt:message key='data.1'/>", "aTargets":[1] },
+						{"sTitle":"<fmt:message key='header.2'/>", "mData":"<fmt:message key='data.2'/>", "aTargets":[2] },
+						{"sTitle":"<fmt:message key='header.3'/>", "mData":"<fmt:message key='data.3'/>", "aTargets":[3] },
+						{"sTitle":"<fmt:message key='header.4'/>", "mData":"<fmt:message key='data.4'/>", "sType":"date", "aTargets":[4] },
+						{"sTitle":"<fmt:message key='header.5'/>", "mData":"<fmt:message key='data.5'/>", "aTargets":[5] },
+						{"sTitle":"<fmt:message key='header.6'/>", "mData":"<fmt:message key='data.6'/>", "aTargets":[6] },
+						{"sTitle":"<fmt:message key='header.7'/>", "mData":"<fmt:message key='data.7'/>", "aTargets":[7], "bVisible": false }
 					]
 					
 					//"sScrollY": "300px",
@@ -143,6 +157,7 @@
 
 	<h4 align="center">Form Secondary Data</h4>
 	<div id="detailsData"></div>  
+	<div id="detailsData1"></div>
 </div>
 </body>		
 </html>

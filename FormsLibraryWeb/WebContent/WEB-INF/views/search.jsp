@@ -32,12 +32,13 @@
 			"bStateSave": true,
 			"bJQueryUI": true,
 			"bSort" : true,
-			"bPaginate": false,
+			"bPaginate": true,
 			//"sScrollY": "200px",
 			"bScrollCollapse": true,
 			"oLanguage": {
 			      "sSearch": "Filter data:",
-				  "sInfo": "Found _TOTAL_ forms"
+				  "sInfo": "Found _TOTAL_ forms",
+				  "sInfoFiltered":"_TOTAL_ filtered from _MAX_ total records"
 			    }
 		} );
 		
@@ -260,8 +261,8 @@
 					<c:out value="${row.formType}" />
 				</td>
 				<td>
-					<a href="detail?formNumber=${row.formNumber }&formName=${formName }&formType=${row.formType }&
-					formEdition=${row.formEdition }&formTitle=${row.formTitle }&status=${row.status }&
+					<a href="detail?formNumber=${row.formNumber }&formName=${row.formName }&formType=${row.formType }&
+					formEdition=${row.formEdition }&status=${row.status }&
 					sequence=${row.sequence }&formId=${row.formId }&url=${row.urlDetail }" >View Details</a>
 				</td>									
 			</tr>
