@@ -31,7 +31,7 @@ public class MockFormsLibraryServiceImpl implements FormsLibraryService {
 	}
 
 	@Override
-	public List<Form> search(String affiliate, SearchCriteria searchCriteria) throws FormsLibraryServiceException {
+	public List<Form> search(String affiliate, SearchCriteria searchCriteria) {
 		log.info("searching for forms based on the following criteria: " + searchCriteria);
 		// TODO Add logic to use client jar to
 		
@@ -51,8 +51,7 @@ public class MockFormsLibraryServiceImpl implements FormsLibraryService {
 	}
 
 	@Override
-	public List<Form> searchDetail(String formname)
-			throws FormsLibraryServiceException {
+	public Form searchDetail(String formname) {
 		log.info("searching form details for form: " + formname);
 		List<Form> forms = new ArrayList<Form>();
 		Form form1 = new FormBuilder().formNumber(formname)
@@ -148,7 +147,7 @@ public class MockFormsLibraryServiceImpl implements FormsLibraryService {
 		forms.add(form1c);
 		forms.add(form2);
 		forms.add(form3);
-		return forms;
+		return form1;
 	}
 
 

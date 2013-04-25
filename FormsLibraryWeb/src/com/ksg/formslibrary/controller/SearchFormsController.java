@@ -44,12 +44,7 @@ public class SearchFormsController {
 			return "redirect:/{afl}/internal/search";
 		}
 		List<Form> searchResults = null;
-		try {
-			searchResults = formsLibraryService.search(afl, searchCriteria);
-		} catch (FormsLibraryServiceException e) {
-			// TODO Auto-generated catch block
-			log.error("Exception occurred during search", e);
-		}
+		searchResults = formsLibraryService.search(afl, searchCriteria);
 		
 		redirectAttrs.addFlashAttribute("searchResults", searchResults);
 		return "redirect:/{afl}/internal/search";

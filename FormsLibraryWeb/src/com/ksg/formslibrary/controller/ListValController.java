@@ -94,7 +94,6 @@ public class ListValController {
 
 	/**
 	 * Returns initial command object for search results
-	 * @return
 	 */
 	@ModelAttribute(value="searchResults")
 	public List<Form> setupSearchResults() {
@@ -102,7 +101,10 @@ public class ListValController {
 		return new ArrayList<Form>();
 	}
 	
-	@ModelAttribute(value="theform")
+	/**
+	 * Returns initial command object for the form
+	 */
+	@ModelAttribute(value="form")
 	public Form setupFormDetail() {
 		log.info("getting ModelAttribute for the form...");
 		return new Form();

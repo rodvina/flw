@@ -11,8 +11,8 @@ public interface FormsLibraryService {
 	
 	List<Form> getForms();
 
-	List<Form> search(String affiliate, SearchCriteria searchCriteria) throws FormsLibraryServiceException;
+	List<Form> search(String affiliate, SearchCriteria searchCriteria);
 	
-	List<Form> searchDetail(String formname) throws FormsLibraryServiceException;
+	Form searchDetail(String url);
 
 }

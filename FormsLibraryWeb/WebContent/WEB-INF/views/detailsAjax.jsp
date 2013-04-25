@@ -21,14 +21,15 @@
 <script type="text/javascript" charset="utf-8"  src="<%= request.getContextPath() %>/resources//js/TableTools.min.js"></script> 
 
 <script>
-
+	
 			$(document).ready(function() {
-				
+
+				$('#detailsData').html('<table border="0" cellspacing="5" id="detailsTable">')
 				$('#detailsTable').dataTable({
-//					"sDom": '<"H"Tfr>t<"F"ip>',
+					//"sDom": '<"H"Tfr>t<"F"ip>',
 					"sDom": 'T<"clear">lfrtip',
 					"bJQueryUI": true,
-					"bPaginate": false,
+					"bPaginate": true,
 					"bFilter": true, 
 					"oLanguage": {
 				      "sSearch": "Filter data:",
@@ -40,7 +41,20 @@
 							],
 						"sSwfPath": "../../resources/media/copy_csv_xls_pdf.swf"
 					},
-					"bProcessing": false
+					"bProcessing": false,
+					"sAjaxSource": '${url}',
+					"sAjaxDataProp": "formDetails",
+					"aoColumnDefs":[
+						{"sTitle":"State", "mData":"state", "aTargets":[0] },
+						{"sTitle":"LOB", "mData":"lob", "aTargets":[1] },
+						{"sTitle":"Company", "mData":"company", "aTargets":[2] },
+						{"sTitle":"NB Eff Date", "mData":"nbEffDate", "aTargets":[3] },
+						{"sTitle":"NB Exp Date", "mData":"nbExpDate", "aTargets":[4] },
+						{"sTitle":"Ren Eff Date", "mData":"renEffDate", "aTargets":[5] },
+						{"sTitle":"Ren Exp Date", "mData":"renExpDate", "aTargets":[6] },
+						{"sTitle":"Contract Type", "mData":"contractType", "aTargets":[7] }
+					]
+					
 					//"sScrollY": "300px",
 					//"bScrollCollapse": true
 				});
@@ -126,49 +140,9 @@
         </tr>
     </tbody>
 </table>
-<br/>
-<h4 align="center">Form Secondary Data</h4>
-<div id="menu" class="menu"></div>
-<table border="0" cellspacing="5" id="detailsTable">
-	<thead>
-    <tr>
-      <th>State</th>
-      <th>LOB</th>
-      <th>Company</th>
-      <th>Contract Type</th>
-      <th>Mandatory/Opt</th>
-      <th>NB Eff Date</th>
-      <th>Ren Eff Date</th>
-      <th>Coverage Code</th>
-      <th>Rule Id</th>
-      <th>Print Category</th>
-      <th>Event</th>
-      <th>Level Indicator</th>
-      <th>Premium Indicator</th>
-      <th>Bulk Renewal</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${form.formDetails }" var="formdetail">   
-    <tr>
-      <td>${formdetail.state }</td>
-      <td>${formdetail.lob }</td>
-      <td>${formdetail.contractType }</td>
-      <td>${formdetail.contractType }</td>
-      <td>${formdetail.lob }</td>
-      <td>${formdetail.lob }</td>
-      <td>${formdetail.lob }</td>
-      <td>${formdetail.lob }</td>
-      <td>${formdetail.lob }</td>
-      <td>${formdetail.lob }</td>
-      <td>${formdetail.lob }</td>
-      <td>${formdetail.lob }</td>
-      <td>${formdetail.lob }</td>
-      <td>${formdetail.lob }</td>
-    </tr>
-    </c:forEach>
-    </tbody>
-  </table>
+
+	<h4 align="center">Form Secondary Data</h4>
+	<div id="detailsData"></div>  
 </div>
 </body>		
 </html>

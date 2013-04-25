@@ -14,7 +14,7 @@ public class Form extends AbstractDomain {
 	private int sequence;
 	private String urlDetail;
 	private String urlDocument;
-	
+	private String formId;
 	
 	private List<FormDetail> formDetails;
 	
@@ -103,6 +103,14 @@ public class Form extends AbstractDomain {
 
 	public void setUrlDetail(String urlDetail) {
 		this.urlDetail = urlDetail;
+	}
+
+	public String getFormId() {
+		return formId;
+	}
+
+	public void setFormId(String formId) {
+		this.formId = formId;
 	}
 
 	

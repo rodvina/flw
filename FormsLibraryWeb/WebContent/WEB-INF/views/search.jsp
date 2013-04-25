@@ -8,50 +8,50 @@
 <head> 
 
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-     
-	<link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath() %>/resources/css/normalize.min.css"/>
-	<link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath() %>/resources/css/style.css" />
-	<link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath() %>/resources/css/demo_page.css" />
-	<link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath() %>/resources/css/jquery.dataTables.css" />
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-		<script type="text/javascript" src="<%= request.getContextPath() %>/resources/js/jquery.dataTables.min.js"></script>
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
-		<script type="text/javascript" charset="utf-8">
-			var resultsTable;
-			var resultsData = [["AK1111", "FAIR Credit", "link", "button"]];
-			
-			$(document).ready(function() {
-				$('#advancedLink').click(function() {
-					$('#advancedFields').toggle();
-				});
-				
-				$("input[type='date']").datepicker();
-				
-				resultsTable = $('#resultsTable').dataTable( {
-					"bFilter": true,
-					"bStateSave": true,
-					"bJQueryUI": true,
-					"bSort" : true,
-					"bPaginate": false,
-					//"sScrollY": "200px",
-					"bScrollCollapse": true,
-					"oLanguage": {
-					      "sSearch": "Filter data:",
-						  "sInfo": "Found _TOTAL_ forms"
-					    }
-				} );
-				
-				$('#clearBtn').click(function() {
-					resultsTable.fnClearTable();
-				});
-				
-				//$('#submitBtn').click(function() {
-					//ajax call
-				//	resultsTable.fnDraw();
-				//});
+    
+<link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath() %>/resources/css/normalize.min.css"/>
+<link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath() %>/resources/css/style.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath() %>/resources/css/demo_page.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath() %>/resources/css/jquery.dataTables.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/resources/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+	var resultsTable;
+	var resultsData = [["AK1111", "FAIR Credit", "link", "button"]];
+	
+	$(document).ready(function() {
+		$('#advancedLink').click(function() {
+			$('#advancedFields').toggle();
+		});
+		
+		$("input[type='date']").datepicker();
+		
+		resultsTable = $('#resultsTable').dataTable( {
+			"bFilter": true,
+			"bStateSave": true,
+			"bJQueryUI": true,
+			"bSort" : true,
+			"bPaginate": false,
+			//"sScrollY": "200px",
+			"bScrollCollapse": true,
+			"oLanguage": {
+			      "sSearch": "Filter data:",
+				  "sInfo": "Found _TOTAL_ forms"
+			    }
+		} );
+		
+		$('#clearBtn').click(function() {
+			resultsTable.fnClearTable();
+		});
+		
+		//$('#submitBtn').click(function() {
+			//ajax call
+		//	resultsTable.fnDraw();
+		//});
 
-			} );
-		</script>
+	} );
+</script>
 </head>
 <body>
 <%@include file="header.jsp" %>
@@ -229,17 +229,14 @@
 		</tr>
 	</table>
 </c:if>	
-	<table id="thetable1">
-		<tr>
-			<td colspan="2"></td>
-			<td colspan="2"><input name="submit" type="submit" value="Search"/><input type="button" value="Clear"/></td>
-		</tr>
-	</table>
+<table id="thetable1">
+	<tr>
+		<td colspan="2"></td>
+		<td colspan="2"><input name="submit" type="submit" value="Search"/><input type="button" value="Clear"/></td>
+	</tr>
+</table>
 </form:form>
 
-<form:form name="resultsForm" method="post" action="detail" modelAttribute="theform">	
-	<DIV style="margin: 12px; margin-bottom: 36px">
-	
 		<table id="resultsTable" class="datatable">
 		<thead>
 		<tr>
@@ -250,30 +247,29 @@
 		</tr>
 		</thead>
 		<tbody>
-		<c:forEach var="form" items="${searchResults}">
+		<c:forEach var="row" items="${searchResults}">
+
 			<tr>
 				<td>
-					<c:out value="${form.formNumber}" />
+					<c:out value="${row.formNumber}" />
 				</td>
 				<td>
-					<c:out value="${form.formName}" />
+					<c:out value="${row.formName}" />
 				</td>
 				<td>
-					<c:out value="${form.formType}" />
+					<c:out value="${row.formType}" />
 				</td>
 				<td>
-					<form:button value="View Details"/>
-					<input type="hidden" value="${form.urlDetail }" name="urlDetail"/>
+					<a href="detail?formNumber=${row.formNumber }&formName=${formName }&formType=${row.formType }&
+					formEdition=${row.formEdition }&formTitle=${row.formTitle }&status=${row.status }&
+					sequence=${row.sequence }&formId=${row.formId }&url=${row.urlDetail }" >View Details</a>
 				</td>									
 			</tr>
+
 		</c:forEach>
 		</tbody>
 		</table>
-	
-	
-<% /******** End of sample code *********/ %>
-</DIV>
-</form:form>
+
 
 </DIV>
 </body>

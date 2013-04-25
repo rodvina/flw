@@ -1,7 +1,6 @@
 package com.ksg.formslibrary.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +8,9 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -33,28 +35,43 @@ public class FormsLibraryServiceImpl implements FormsLibraryService {
 	public List<Form> getForms() {
 		return forms;
 	}
+	
 
 	@Override
-	public List<Form> search(String affiliate, SearchCriteria searchCriteria) throws FormsLibraryServiceException {
+	public List<Form> search(String affiliate, SearchCriteria searchCriteria) {
+		//TODO:  Decide whether REST service will provide GET (via querystring) or POST (via request body) method
 		log.info("searching for forms based on the following criteria: " + searchCriteria);
+		return searchViaPost(affiliate, searchCriteria);
+	}
+
+	private List<Form> searchViaGet(String affiliate, SearchCriteria searchCriteria) {
+		log.info("search via GET to " + searchUrl);
 		
 		//TODO: Convert searchCriteria to searchParams
-		String message = null;
 		Map<String, String> urlVariables = new HashMap<String, String>();
 		urlVariables.put(UrlVariable.afl.toString(), affiliate);
-		log.info("calling REST url:" + searchUrl);
-		List<Form> response = restTemplate.getForObject(searchUrl, List.class, urlVariables);
-
-		return response;
+		
+		ResponseEntity<List> response = restTemplate.getForEntity(searchUrl, List.class, urlVariables);
+		
+		return response.getBody();
+	}
+	
+	private List<Form> searchViaPost(String affiliate, SearchCriteria searchCriteria) {
+		log.info("search via POST to " + searchUrl);
+		
+		Map<String, String> urlVariables = new HashMap<String, String>();
+		urlVariables.put(UrlVariable.afl.toString(), affiliate);
+				
+		ResponseEntity<List> response = restTemplate.postForEntity(searchUrl, searchCriteria, List.class, urlVariables);
+		return response.getBody();
+	
 	}
 
 	@Override
-	public List<Form> searchDetail(String formname)
-			throws FormsLibraryServiceException {
-		// TODO Auto-generated method stub
-		return null;
+	public Form searchDetail(String url) {
+		log.info("get form via GET to " + url);
+		ResponseEntity<Form> response = restTemplate.getForEntity(url, Form.class);
+		return response.getBody();
 	}
-
-
 
 }
