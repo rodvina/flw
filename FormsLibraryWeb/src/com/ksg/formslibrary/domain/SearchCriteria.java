@@ -51,6 +51,7 @@ public class SearchCriteria extends AbstractDomain {
 	@DateTimeFormat(pattern="MM/dd/yyyy")
 	Date modDate;
 	String formId;
+	boolean suppressDuplicates;
 	
 	public String getFormNumber() {
 		return formNumber;
@@ -192,6 +193,12 @@ public class SearchCriteria extends AbstractDomain {
 	public String toString() {
 		// TODO Auto-generated method stub
 		return super.toString();
+	}
+	public boolean isSuppressDuplicates() {
+		return suppressDuplicates;
+	}
+	public void setSuppressDuplicates(boolean suppressDuplicates) {
+		this.suppressDuplicates = suppressDuplicates;
 	}
 
 	

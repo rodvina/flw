@@ -8,9 +8,38 @@ body {
 input, label, select {
 	display: block;
 }
+
 label {
 	font-weight:bold;
 	font-size:16px;
+}
+
+.leftLabel {
+
+}
+
+.rightValue {
+
+}
+
+.content-wrapper {
+  display:table;
+}
+
+.content-row {
+  display:table-row;
+  
+}
+
+.content-row > div {
+  display:table-cell;
+  width: 100px;
+}
+
+.content-label {
+	font-weight: bold;
+	font-size: 14px;
+	color: #165788;
 }
 
 option	 {
@@ -20,6 +49,10 @@ option	 {
 
 img {
 	border: 0;
+}
+img.icon {
+	width: 37px;
+	height: 37px;
 }
 
 .error {

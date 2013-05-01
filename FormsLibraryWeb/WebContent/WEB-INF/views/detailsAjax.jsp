@@ -42,7 +42,7 @@
 					//"sDom": '<"H"Tfr>t<"F"ip>',
 					"sDom": 'T<"clear">lfrtip',
 					"bJQueryUI": true,
-					"bPaginate": true,
+					"bPaginate": false,
 					"bFilter": true, 
 					"oLanguage": {
 				      "sSearch": "Filter data:",
@@ -56,7 +56,7 @@
 						"sSwfPath": "../../resources/media/copy_csv_xls_pdf.swf"
 					},
 					"bProcessing": false,
-					"sAjaxSource": '${url}',
+					"sAjaxSource": "${ajaxUrl}",
 					"sAjaxDataProp": "formDetails",
 					"aoColumnDefs":[
 						{"sTitle":"<fmt:message key='header.0'/>", "mData":"<fmt:message key='data.0'/>", "aTargets":[0] },

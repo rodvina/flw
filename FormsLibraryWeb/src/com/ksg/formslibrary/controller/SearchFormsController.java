@@ -29,22 +29,21 @@ import com.ksg.formslibrary.service.FormsLibraryServiceException;
 @Controller("searchFormController")
 @RequestMapping(method=RequestMethod.POST)
 public class SearchFormsController {
-	private static final String VIEW_SEARCH = "search";
-
 	private static final Logger log = Logger.getLogger(SearchFormsController.class);
 
 	@Autowired
 	private FormsLibraryService formsLibraryService;
 	
-	@RequestMapping(value = "{afl}/internal/search")
+	@RequestMapping(value = {"{afl}/internal/search", "{afl}/internal"})
 	public String processSearchInternal(@PathVariable String afl, @ModelAttribute SearchCriteria searchCriteria,
 			BindingResult result, RedirectAttributes redirectAttrs) {
 		if (result.hasErrors()) {
 			log.error("Errors on search form");
 			return "redirect:/{afl}/internal/search";
 		}
-		List<Form> searchResults = null;
-		searchResults = formsLibraryService.search(afl, searchCriteria);
+		// set to false so dupes will be returned, if any
+		searchCriteria.setSuppressDuplicates(false);
+		List<Form> searchResults = formsLibraryService.search(afl, searchCriteria);
 		
 		redirectAttrs.addFlashAttribute("searchResults", searchResults);
 		return "redirect:/{afl}/internal/search";

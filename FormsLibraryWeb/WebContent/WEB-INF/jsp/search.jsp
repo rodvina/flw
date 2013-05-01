@@ -1,64 +1,9 @@
-<!DOCTYPE html>
-<%@page session="false" contentType="text/html" pageEncoding="ISO-8859-1" %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<html>
-<head> 
-
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-    
-<link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath() %>/resources/css/normalize.min.css"/>
-<link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath() %>/resources/css/style.css" />
-<link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath() %>/resources/css/demo_page.css" />
-<link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath() %>/resources/css/jquery.dataTables.css" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script type="text/javascript" src="<%= request.getContextPath() %>/resources/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
-<script type="text/javascript" charset="utf-8">
-	
-	$(document).ready(function() {
-		$('#advancedLink').click(function() {
-			$('#advancedFields').toggle();
-		});
-		
-		$("input[type='date']").datepicker();
-		
-		resultsTable = $('#resultsTable').dataTable( {
-			"bFilter": true,
-			"bStateSave": true,
-			"bJQueryUI": true,
-			"bSort" : true,
-			"bPaginate": false,
-			//"sScrollY": "200px",
-			"bScrollCollapse": true,
-			"oLanguage": {
-			      "sSearch": "Filter data:",
-				  "sInfo": "Found _TOTAL_ forms",
-				  "sInfoFiltered":"_TOTAL_ filtered from _MAX_ total records",
-				  "sZeroRecords":"Your filter did not match any rows. ",
-				  "sEmptyTable":"Your search did not match any forms. "
-			    }
-		} );
-		
-		$('#clearBtn').click(function() {
-			resultsTable.fnClearTable();
-		});
-		
-		//$('#submitBtn').click(function() {
-			//ajax call
-		//	resultsTable.fnDraw();
-		//});
-
-	} );
-</script>
-</head>
-<body>
-<%@include file="header.jsp" %>
-
 <DIV>
-
 <H3>Search Criteria</H3>
 <form:form name="searchForm" method="post" action="search" modelAttribute="searchCriteria">
 	<table width="757" border="0" id="searchTable">
@@ -243,7 +188,7 @@
 		<tr>
 			<th>Form Number</th>
 			<th>Form Title</th>
-			<th>Options</th>			
+			<th>PDF</th>			
 		</tr>
 		</thead>
 		<tbody>
@@ -251,15 +196,17 @@
 
 			<tr>
 				<td>
-					<c:out value="${row.formNumber}" />
+					<a href="detail?formNumber=${row.formNumber }&formName=${row.formName }&formType=${row.formType }&
+					formEdition=${row.formEdition }&status=${row.status }&
+					sequence=${row.sequence }&formId=${row.formId }&url=${row.urlDetail }" >
+						<c:out value="${row.formNumber}" />
+					</a>
 				</td>
 				<td>
 					<c:out value="${row.formName}" />
 				</td>
 				<td>
-					<a href="detail?formNumber=${row.formNumber }&formName=${row.formName }&formType=${row.formType }&
-					formEdition=${row.formEdition }&status=${row.status }&
-					sequence=${row.sequence }&formId=${row.formId }&url=${row.urlDetail }" >View Details</a>
+					<a href="#"><img class="icon" src="<%= request.getContextPath() %>/resources/images/icon_pdf.png"></img></a>
 				</td>									
 			</tr>
 
@@ -267,7 +214,4 @@
 		</tbody>
 		</table>
 
-
 </DIV>
-</body>
-</html>

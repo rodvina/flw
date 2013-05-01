@@ -1,6 +1,8 @@
-<%@page session="false" contentType="text/html" pageEncoding="ISO-8859-1" import="java.util.*" %>
+<%@page session="false" contentType="text/html" pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>        
 <style type="text/css" title="currentStyle">
@@ -62,25 +64,37 @@
 			</td>
 
 			<td width="94"><label for="state">State:</label>
-			   <form:select size="5" name="state" path="states" itemValue="key" itemLabel="value">
-	  			<form:option value="00" label="All States"/> 
-	  			<form:options items="${listValues.stateList}" itemValue="key" itemLabel="value" />
-			 	
-			</form:select></td>
+			<!-- form:options does not work when evaluating hashmap expression
+			-->
+	 		   <form:select size="5" name="state" path="states">
+	  			<option value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
+	  			<c:forEach items="${listValues['stateList']}" var="state">
+			       <form:option value="${state.key}" label="${state.value}"/>
+			   </c:forEach>
+			</form:select>
+
+			</td>
 			<td width="124"><label for="lob">Line Of Business</label>
 			  <form:select size="5" name="lob" path="lobs">
-	  			<form:option value="00" label="All" />
-	  			<form:options items="${listValues.lobList}" itemValue="key" itemLabel="value" />
+	  			<option selected="selected" value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
+				<c:forEach items="${listValues['lobList']}" var="lob">
+			       <form:option value="${lob.key}" label="${lob.value}" />
+			   </c:forEach>
+
 			</form:select></td>
 			<td width="108"><label for="contractType">Contract Type</label>
 			  <form:select size="5" name="contractType" path="policyTypes">
-	  			<form:option value="00" label="All"/>
-	  			<form:options items="${listValues.policyTypeList}" itemValue="key" itemLabel="value" />
+	  			<option value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
+	  			<c:forEach items="${listValues['policyTypeList']}" var="policyType" >
+	  				<form:option value="${policyType.key }" label="${policyType.value }" />
+	  			</c:forEach>
 			</form:select></td>
 			<td width="192"><label for="company">Company</label>
 			  <form:select size="5" name="company" path="company">
-	  			<form:option value="00" label="All"/>
-	  			<form:options items="${listValues.companyList}" itemValue="key" itemLabel="value" />
+	  			<option value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
+	  			<c:forEach items="${listValues['companyList']}" var="company" >
+	  				<form:option value="${company.key }" label="${company.value }" />
+	  			</c:forEach>
 			</form:select></td>
 			</tr>
 		  </table></td>
