@@ -1,13 +1,14 @@
 <script type="text/javascript" charset="utf-8">
-var resultsTable;
+//var results = ${results}
 $(document).ready(function() {
+//	$('#resultsJSON').html('<table id="resultsTable1" class="datatable">');
 	$('#advancedLink').click(function() {
 		$('#advancedFields').toggle();
 	});
 	
 	$("input[type='date']").datepicker();
 	
-	resultsTable = $('#resultsTable').dataTable( {
+	$('#resultsTable').dataTable( {
 		"sDom": '<"top"fi>t<"bottom"><"clear">',
 		"bFilter": true,
 		"bStateSave": true,
@@ -16,6 +17,7 @@ $(document).ready(function() {
 		"bPaginate": false,
 		//"sScrollY": "200px",
 		"bScrollCollapse": true,
+
 		"oLanguage": {
 		      "sSearch": "Filter:",
 			  "sInfo": "Found _TOTAL_ forms",
@@ -25,14 +27,13 @@ $(document).ready(function() {
 		    }
 	} );
 	
-	$('#clearBtn').click(function() {
-		resultsTable.fnClearTable();
+	$("#clear").click(function() {
+		$("#results").hide();
 	});
 	
-	//$('#submitBtn').click(function() {
-		//ajax call
-	//	resultsTable.fnDraw();
-	//});
+	$("#submit").click(function() {
+		$("#results").show();
+	});
 
 } );
 </script>

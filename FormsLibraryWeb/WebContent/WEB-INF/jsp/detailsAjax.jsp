@@ -9,11 +9,11 @@
 <div id="formdetails">
 	<fieldset id="detail">
 		<legend><span id="detailTitle"></span>  
-		<a href="../../../testResources/mooreform.pdf"><img class="icon" src="../../resources/images/icon_pdf.png"/></a>
+			<a href="view?url=${row.docDetail }" target="_blank">
+			<img class="icon" src="<%=request.getContextPath() %>/resources/images/icon_pdf.png"/></a>
 		</legend>
-		<div id="primaryData">
-		</div>
-	<div id="detailsData"></div>
+		<div id="primaryData"></div>
+		<div id="detailsData"></div>
 	</fieldset>
 </div>
 

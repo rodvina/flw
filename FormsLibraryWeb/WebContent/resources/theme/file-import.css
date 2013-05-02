@@ -1,0 +1,5 @@
+.fi-row1-col1 {float: left; margin-left: 4%; text-align: left;  }
+.fi-row2-col1 {float: left; margin-left: 4%; }
+#dataFile {text-align: left; width:98%; }
+#status { margin-left: 4%; margin-right: 4%; text-align: left; }
+#fieldset {background-color:#E6F7FB; color:#00558B; font-weight:bold; }

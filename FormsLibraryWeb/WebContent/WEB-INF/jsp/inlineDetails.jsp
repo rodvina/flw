@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$('#primaryData').append('<ol><li><label>Sequence:</label>'+form.sequence+'</li></ol>');
 	$('#primaryData').append('<ol><li><label>Form ID:</label>'+form.formId+'</li></ol>');
 	$('#detailTitle').html(form.formNumber+form.formEdition);
-	$('#detailsData').html('<table id="detailsTable">');
+	$('#detailsData').html('<table id="detailsTable" class="pretty">');
 	$('#detailsTable').dataTable({
 		//"sDom": '<"H"Tfr>t<"F"ip>',
 //		"sDom": 'Ti<"clear">lfrtp',

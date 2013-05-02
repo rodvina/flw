@@ -175,18 +175,16 @@
 		</td>
 		</tr>
 	</table>
-</c:if>	
-<table id="thetable1">
-	<tr>
-		<td colspan="2"></td>
-		<td colspan="2"><input name="submit" type="submit" value="Search"/><input type="button" value="Clear"/></td>
-	</tr>
-</table>
+</c:if>
+<div id="buttons">	
+	<input id="submit" class="submit" type="submit" value="Search"/>
+	<input id="clear" type="button" value="Clear"/>
+</div>
 </form:form>
 </fieldset>
 <fieldset id="results">
 <legend><span>Search Results</span></legend>
-	<table id="resultsTable" class="datatable">
+	<table id="resultsTable" class="pretty">
 	<thead>
 	<tr>
 		<th>Form Number</th>
@@ -199,7 +197,7 @@
 	
 	<tr>
 		<td>
-			<a href="detail?&url=${row.urlDetail }" >
+			<a href="detail?url=${row.urlDetail }" >
 				<c:out value="${row.formNumber}" />
 			</a>
 		</td>
@@ -207,7 +205,7 @@
 			<c:out value="${row.formName}" />
 		</td>
 		<td>
-			<a href="#"><img class="icon" src="<%= request.getContextPath() %>/resources/images/icon_pdf.png"></img></a>
+			<a href="view?url=${row.docDetail }" target="_blank"><img class="icon" src="<%= request.getContextPath() %>/resources/images/icon_pdf.png"></img></a>
 		</td>									
 	</tr>
 	
@@ -215,4 +213,5 @@
 	</tbody>
 	</table>
 </fieldset>
+
 </div>
