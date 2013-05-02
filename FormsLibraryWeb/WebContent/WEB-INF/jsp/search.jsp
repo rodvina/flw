@@ -3,8 +3,9 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<DIV>
-<H3>Search Criteria</H3>
+<div id="formSearch">
+<fieldset id="search">
+<legend><span>Search Criteria</span></legend>
 <form:form name="searchForm" method="post" action="search" modelAttribute="searchCriteria">
 	<table width="757" border="0" id="searchTable">
 	  <tr>
@@ -182,36 +183,36 @@
 	</tr>
 </table>
 </form:form>
-
-		<table id="resultsTable" class="datatable">
-		<thead>
-		<tr>
-			<th>Form Number</th>
-			<th>Form Title</th>
-			<th>PDF</th>			
-		</tr>
-		</thead>
-		<tbody>
-		<c:forEach var="row" items="${searchResults}">
-
-			<tr>
-				<td>
-					<a href="detail?formNumber=${row.formNumber }&formName=${row.formName }&formType=${row.formType }&
-					formEdition=${row.formEdition }&status=${row.status }&
-					sequence=${row.sequence }&formId=${row.formId }&url=${row.urlDetail }" >
-						<c:out value="${row.formNumber}" />
-					</a>
-				</td>
-				<td>
-					<c:out value="${row.formName}" />
-				</td>
-				<td>
-					<a href="#"><img class="icon" src="<%= request.getContextPath() %>/resources/images/icon_pdf.png"></img></a>
-				</td>									
-			</tr>
-
-		</c:forEach>
-		</tbody>
-		</table>
-
-</DIV>
+</fieldset>
+<fieldset id="results">
+<legend><span>Search Results</span></legend>
+	<table id="resultsTable" class="datatable">
+	<thead>
+	<tr>
+		<th>Form Number</th>
+		<th>Form Title</th>
+		<th>PDF</th>			
+	</tr>
+	</thead>
+	<tbody>
+	<c:forEach var="row" items="${searchResults}">
+	
+	<tr>
+		<td>
+			<a href="detail?&url=${row.urlDetail }" >
+				<c:out value="${row.formNumber}" />
+			</a>
+		</td>
+		<td>
+			<c:out value="${row.formName}" />
+		</td>
+		<td>
+			<a href="#"><img class="icon" src="<%= request.getContextPath() %>/resources/images/icon_pdf.png"></img></a>
+		</td>									
+	</tr>
+	
+	</c:forEach>
+	</tbody>
+	</table>
+</fieldset>
+</div>

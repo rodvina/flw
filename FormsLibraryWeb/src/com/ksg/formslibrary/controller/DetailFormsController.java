@@ -1,11 +1,15 @@
 package com.ksg.formslibrary.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,26 +73,30 @@ public class DetailFormsController {
 //	}
 	
 	@RequestMapping(value="{afl}/internal/detail", method=RequestMethod.GET)
-	public String processGetFormLink(@RequestParam String url, 
-			@RequestParam String formNumber, @RequestParam String formType,
-			@RequestParam String formEdition,
-			@RequestParam String sequence, @RequestParam String status,
-			@RequestParam String formId, @RequestParam String formName,
-			Model model, HttpServletRequest request) {
-//		Form formdetail = formsLibraryService.searchDetail(url);
-		Form formdetail = new Form();
-		formdetail.setFormNumber(formNumber);
-		formdetail.setFormType(formType);
-		formdetail.setFormName(formName);
-		formdetail.setFormId(formId);
-		formdetail.setStatus(status);
-		formdetail.setSequence(Integer.parseInt(sequence));
-		formdetail.setFormEdition(formEdition);
-		model.addAttribute("form", formdetail);
-		model.addAttribute("url", url);
+	public String processGetFormLink(@RequestParam String url,
+			Model model) throws JsonGenerationException, JsonMappingException, IOException {
+
+		//Not needed because data will be pulled form jsonFrom string instead of formdetail
+		//model attribute
+//		Form formdetail = new Form();
+//		formdetail.setFormNumber(formNumber);
+//		formdetail.setFormType(formType);
+//		formdetail.setFormName(formName);
+//		formdetail.setFormId(formId);
+//		formdetail.setStatus(status);
+//		formdetail.setSequence(Integer.parseInt(sequence));
+//		formdetail.setFormEdition(formEdition);
+//		model.addAttribute("formObj", formdetail);
+//		model.addAttribute("url", url);
 		
-		String ajaxUrl = request.getRequestURL().append("/ajax?url=").append(url).toString();
-		model.addAttribute("ajaxUrl", ajaxUrl);
+		//TODO:  Call service, convert JSON to string, set in model attribute
+		Form responseForm = formsLibraryService.searchDetail(url);
+		String jsonForm = new ObjectMapper().writeValueAsString(responseForm);
+		model.addAttribute("form", jsonForm);
+		log.debug("form:"+jsonForm);
+		
+//		String ajaxUrl = request.getRequestURL().append("/ajax?url=").append(url).toString();
+//		model.addAttribute("ajaxUrl", ajaxUrl);
 		
 		//TODO:  Add conditional logic to return different view based on form type
 		return "detailsAjax";
@@ -98,14 +106,14 @@ public class DetailFormsController {
 	 * Returns JSON back
 	 * @return
 	 */
-	@RequestMapping(value="{afl}/internal/detail/ajax", method=RequestMethod.GET)
-	public @ResponseBody Form processGetFormLink(@RequestParam String url, 
-			Model model) {
-		Form formdetail = formsLibraryService.searchDetail(url);
-		
-//		model.addAttribute("url", url);
-		return formdetail;
-	}
+//	@RequestMapping(value="{afl}/*/detail/ajax", method=RequestMethod.GET)
+//	public @ResponseBody Form processGetFormLink(@RequestParam String url, 
+//			Model model) {
+//		Form formdetail = formsLibraryService.searchDetail(url);
+//		
+////		model.addAttribute("url", url);
+//		return formdetail;
+//	}
 	
 //	@RequestMapping(value = "{afl}/internal/detail", method=RequestMethod.POST)
 //	public String processGetForm(@ModelAttribute Form form, RedirectAttributes redirectAttr) {

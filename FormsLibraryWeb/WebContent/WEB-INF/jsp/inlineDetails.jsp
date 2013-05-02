@@ -1,8 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script type="text/javascript" charset="utf-8">
+var form = ${form}
 $(document).ready(function() {
-	
-	$('#detailsData').html('<table id="detailsTable">')
+	$('#primaryData').html('<ol><li><label>Form Title:</label>'+form.formName+'</li></ol>');
+	$('#primaryData').append('<ol><li><label>Status:</label>'+form.status+'</li></ol>');
+	$('#primaryData').append('<ol><li><label>Sequence:</label>'+form.sequence+'</li></ol>');
+	$('#primaryData').append('<ol><li><label>Form ID:</label>'+form.formId+'</li></ol>');
+	$('#detailTitle').html(form.formNumber+form.formEdition);
+	$('#detailsData').html('<table id="detailsTable">');
 	$('#detailsTable').dataTable({
 		//"sDom": '<"H"Tfr>t<"F"ip>',
 //		"sDom": 'Ti<"clear">lfrtp',
@@ -22,8 +27,14 @@ $(document).ready(function() {
 			"sSwfPath": "../../resources/media/copy_csv_xls_pdf.swf"
 		},
 		"bProcessing": false,
-		"sAjaxSource": "${ajaxUrl}",
-		"sAjaxDataProp": "formDetails",
+		"aaData": form.formDetails,
+		//"aoColumns": [
+		//               {"sTitle":"LOB", "mData":"lob"},
+		//               {"sTitle":"State", "mData":"state"},
+		//               {"sTitle":"Company", "mData":"company"}		               
+		//               ] 
+//		"sAjaxSource": "${ajaxUrl}",
+//		"sAjaxDataProp": "formDetails",
 //		"aoColumnDefs":[
 //			{"sTitle":"<fmt:message key='header.0'/>", "mData":"<fmt:message key='data.0'/>", "aTargets":[0] },
 //			{"sTitle":"<fmt:message key='header.1'/>", "mData":"<fmt:message key='data.1'/>", "aTargets":[1] },
@@ -34,6 +45,7 @@ $(document).ready(function() {
 //			{"sTitle":"<fmt:message key='header.6'/>", "mData":"<fmt:message key='data.6'/>", "aTargets":[6] },
 //			{"sTitle":"<fmt:message key='header.7'/>", "mData":"<fmt:message key='data.7'/>", "aTargets":[7], "bVisible": false }
 //		]
+
 		"aoColumnDefs":[
 			{"sTitle":"State", "mData":"state", "aTargets":[0] },
 			{"sTitle":"LOB", "mData":"lob", "aTargets":[1] },
