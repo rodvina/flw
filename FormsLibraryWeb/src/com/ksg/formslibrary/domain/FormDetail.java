@@ -1,5 +1,6 @@
 package com.ksg.formslibrary.domain;
 
+
 public class FormDetail extends AbstractDomain {
 
 	private String lob;
@@ -11,9 +12,14 @@ public class FormDetail extends AbstractDomain {
 	private String nbExpDate;
 	private String renEffDate;
 	private String renExpDate;
+	private String procEffDate;
+	private String procExpDate;
+	private String modDate;
 	private String prevForm;
 	private String event;
 	private String ruleId;
+	private String premiumInd;
+	private String bulkRenewal;
 	
 	private String policyType;
 
@@ -120,4 +126,45 @@ public class FormDetail extends AbstractDomain {
 	public void setPolicyType(String policyType) {
 		this.policyType = policyType;
 	}
-}
+
+	public String getProcEffDate() {
+		return procEffDate;
+	}
+
+	public void setProcEffDate(String procEffDate) {
+		this.procEffDate = procEffDate;
+	}
+
+	public String getProcExpDate() {
+		return procExpDate;
+	}
+
+	public void setProcExpDate(String procExpDate) {
+		this.procExpDate = procExpDate;
+	}
+
+	public String getPremiumInd() {
+		return premiumInd;
+	}
+
+	public void setPremiumInd(String premiumInd) {
+		this.premiumInd = premiumInd;
+	}
+
+	public String getBulkRenewal() {
+		return bulkRenewal;
+	}
+
+	public void setBulkRenewal(String bulkRenewal) {
+		this.bulkRenewal = bulkRenewal;
+	}
+
+	public String getModDate() {
+		return modDate;
+	}
+
+	public void setModDate(String modDate) {
+		this.modDate = modDate;
+	}
+	
+	}

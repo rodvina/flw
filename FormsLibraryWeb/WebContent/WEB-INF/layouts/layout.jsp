@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath() %>/resources/theme/jquery-ui-1.9.1.custom.css" />
 <link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath() %>/resources/css/normalize.min.css"/>
 <link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath() %>/resources/css/style.css" />
-<link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath() %>/resources/css/formStyle.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath() %>/resources/theme/formStyle.css" />
 <link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath() %>/resources/theme/tile.css" />
 <link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath() %>/resources/theme/jquery.dataTables.css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>

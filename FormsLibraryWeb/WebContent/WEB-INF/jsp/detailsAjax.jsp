@@ -3,14 +3,14 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
+<div class="shortrow">
 <H3 align="center"><a href="search">Return to Search</a> -> Form Details</H3>
-
-<div id="formdetails">
+</div>
+<div id="formdetails" class="row">
 	<fieldset id="detail">
 		<legend><span id="detailTitle"></span>  
 			<a href="view?url=${row.docDetail }" target="_blank">
-			<img class="icon" src="<%=request.getContextPath() %>/resources/images/icon_pdf.png"/></a>
+			<img class="icon" src="<c:url value="/resources/images/icon_pdf.png"/>"/></a>
 		</legend>
 		<div id="primaryData"></div>
 		<div id="detailsData"></div>

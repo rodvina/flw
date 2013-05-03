@@ -30,7 +30,7 @@ import com.ksg.formslibrary.service.ListValueService;
  */
 @Controller("listValController")
 @RequestMapping(method=RequestMethod.GET)
-//@SessionAttributes(value = "searchResults")
+@SessionAttributes(value="searchResults")
 public class ListValController {
 	private static final String VIEW_SEARCH = "search";
 

@@ -8,6 +8,27 @@ div.row {
 	clear:both; 
 	padding-top: 6px; 
 	padding-bottom: 6px; }
+	
+div#buttons.row {
+	float: right; 
+	padding-top: 6px; 
+	padding-bottom: 6px; }
+	
+div#buttons.col {
+	display: inline;
+	float: left;
+	padding-left: 10px; }
+		
+div.col {
+	display: inline;
+	float: left;
+	padding-left: 25px;
+}
+div.shortrow {
+	clear:both; 
+	padding-top: 0px; 
+	padding-bottom: 0px;
+	float: left }
 
 #kemperCorpLogo{
 	float:left; 
@@ -16,10 +37,10 @@ div.row {
 
 #uiTitle {
 	float:left; 
-	font-size:28pt; 
+	font-size:24pt; 
 	font-weight:bold; 
-	width:50%; 
-	line-height:1.45em; 
+	width:40%; 
+	line-height:1.65em; 
 	vertical-align:middle; 
 	text-align:right; }
 
