@@ -27,6 +27,15 @@ img.icon {
 
 }
 
+a {
+	text-decoration: none;
+}
+
+a:HOVER {
+	text-decoration: underline;
+	color: #C8541A;
+	font-weight: bold;
+}
 .error {
 	color: red;
 }

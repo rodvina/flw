@@ -192,6 +192,7 @@
 	<tr>
 		<th>Form Number</th>
 		<th>Form Title</th>
+		<th>Form Type</th>
 		<th>PDF</th>			
 	</tr>
 	</thead>
@@ -207,6 +208,9 @@
 		<td>
 			<c:out value="${row.formName}" />
 		</td>
+		<td>
+			<c:out value="${row.formType}" />
+		</td>		
 		<td>
 			<a href="view?url=${row.docDetail }" target="_blank"><img class="icon" src="<%= request.getContextPath() %>/resources/images/icon_pdf.png"></img></a>
 		</td>									
