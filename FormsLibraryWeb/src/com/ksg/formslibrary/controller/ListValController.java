@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -55,17 +57,23 @@ public class ListValController {
 	 * @return
 	 */
 	@RequestMapping(value = "{afl}/internal/search")
-	public String showSearchInternal(@PathVariable String afl, Model model, 
+	public String showSearchInternal(@PathVariable String afl, @RequestParam(required=false) String action, Model model, 
 			@ModelAttribute("searchResults") final List<Form> searchResults) {
 		log.info("returning view for internal GET...");
 		model.addAttribute("showAdvance", true);
+		if (StringUtils.equals(action, "return")) {
+			model.addAttribute("showResults", true);
+		}
 		return VIEW_SEARCH;
 	}
 	
 	@RequestMapping(value = "{afl}/external/search")
-	public String showSearchExternal(@PathVariable String afl, Model model) {
+	public String showSearchExternal(@PathVariable String afl, @RequestParam(required=false) String action, Model model) {
 		log.info("returning view for external GET...");
 		model.addAttribute("showAdvance", false);
+		if (StringUtils.equals(action, "return")) {
+			model.addAttribute("showResults", true);
+		}
 		return VIEW_SEARCH;
 	}
 	

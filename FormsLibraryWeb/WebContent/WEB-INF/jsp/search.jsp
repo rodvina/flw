@@ -6,7 +6,7 @@
 <div id="formSearch" class="row">
 <fieldset id="search">
 <legend><span>Search Criteria</span></legend>
-<form:form name="searchForm" method="post" action="search" modelAttribute="searchCriteria">
+<form:form id="searchForm" name="searchForm" method="post" action="search" modelAttribute="searchCriteria">
 <div id="basicSearch" class="row">
 <!-- <ol id="searchList"> -->
 	<div id="input" class="col">
@@ -23,7 +23,6 @@
 		<!-- form:options does not work when evaluating hashmap expression
 		-->
 		<form:select size="5" name="state" path="states">
-	 		<option value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
 	 		<c:forEach items="${listValues['states']}" var="state">
 		       <form:option value="${state.code}" label="${state.value}"/>
 		   </c:forEach>
@@ -32,7 +31,6 @@
 	<div class="col">
 		<label for="lob"><fmt:message key='label.lob'/></label>
 		  <form:select size="5" name="lob" path="lobs">
-	 			<option selected="selected" value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
 			<c:forEach items="${listValues['lobs']}" var="lob">
 		       <form:option value="${lob.code}" label="${lob.value}" />
 		   </c:forEach>
@@ -41,7 +39,6 @@
 	<div class="col">
 		<label for="contractType"><fmt:message key='label.contracttype'/></label>
 		<form:select size="5" name="contractType" path="contractTypes">
-			<option value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
 			<c:forEach items="${listValues['contractTypes']}" var="contractType" >
 				<form:option value="${contractType.code }" label="${contractType.value }" />
 			</c:forEach>
@@ -50,7 +47,6 @@
 	<div class="col">
 		<label for="company"><fmt:message key='label.company'/></label>
 		<form:select size="5" name="company" path="companies">
-			<option value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
 			<c:forEach items="${listValues['companies']}" var="company" >
 				<form:option value="${company.code }" label="${company.value }" />
 			</c:forEach>
@@ -66,7 +62,6 @@
 	  	<div class="col">
 		  	<label><fmt:message key='label.formtype'/></label>
 			<form:select size="4" name="formType" path="formTypes">
-				<option value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
 				<c:forEach items="${listValues['formTypes']}" var="formType" >
 				<form:option value="${formType.code }" label="${formType.value }" />
 				</c:forEach>
@@ -75,7 +70,6 @@
 	   	<div class="col">
 		   	<label><fmt:message key='label.printcat'/></label>
 		 	<form:select size="4" name="printCategory" path="printCategories">
-				<option value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
 				<c:forEach items="${listValues['printCategories']}" var="printCategory" >
 					<form:option value="${printCategory.code }" label="${printCategory.value }" />
 				</c:forEach>
@@ -84,7 +78,6 @@
 		 <div class="col">
 		 	<label><fmt:message key='label.coverage'/></label>
 		    <form:select size="4" name="coverage" path="coverages">
-				<option selected="selected" value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
 				<c:forEach items="${listValues['coverageCodes']}" var="coverage" >
 					<form:option value="${coverage.code }" label="${coverage.value }" />
 				</c:forEach>
@@ -93,7 +86,6 @@
 		<div class="col">
 			<label><fmt:message key='label.event'/></label>
 		     <form:select size="4" name="event" path="events">
-				<option selected="selected" value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
 				<c:forEach items="${listValues['events']}" var="event" >
 					<form:option value="${event.code }" label="${event.value }" />
 				</c:forEach>
@@ -104,7 +96,6 @@
 		<div class="col">
 		    <label><fmt:message key='label.bulkrenewal'/></label>
 		    <form:select size="4" name="event" path="events">
-				<option selected="selected" value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
 				<c:forEach items="${listValues['bulkRenewals']}" var="bulkRenewal" >
 					<form:option value="${bulkRenewal.code }" label="${bulkRenewal.value }" />
 				</c:forEach>
@@ -113,7 +104,6 @@
 		<div class="col">
 			<label><fmt:message key='label.ruleid'/></label>
 	         <form:select size="4" name="ruleid" path="ruleIds">
-				<option selected="selected" value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
 				<c:forEach items="${listValues['ruleIds']}" var="ruleId" >
 					<form:option value="${ruleId.code }" label="${ruleId.value }" />
 				</c:forEach>
@@ -121,7 +111,6 @@
 		</div>
 		<div class="col"><label><fmt:message key='label.levelind'/></label>
 			<form:select size="3" name="levelind" path="levelIndicators">
-				<option selected="selected" value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
 				<c:forEach items="${listValues['levelIndicators']}" var="levelIndicator" >
 					<form:option value="${levelIndicator.code }" label="${levelIndicator.value }" />
 				</c:forEach>
@@ -130,7 +119,6 @@
 		<div class="col">
 			<label><fmt:message key='label.premind'/></label>
 		    <form:select size="3" name="premind" path="premIndicators">
-				<option selected="selected" value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
 				<c:forEach items="${listValues['premIndicators']}" var="premIndicator" >
 					<form:option value="${premIndicator.code }" label="${premIndicator.value }" />
 				</c:forEach>
@@ -165,7 +153,6 @@
 		<div class="col">
 	 		<label><fmt:message key='label.status'/></label>
 	       	<form:select size="3" name="status" path="statuses" multiple="true">
-				<option selected="selected" value="<fmt:message key='any.code'/>"><fmt:message key='any.value'/></option>
 				<c:forEach items="${listValues['statuses']}" var="status" >
 				<form:option value="${status.code }" label="${status.value }" />
 				</c:forEach>
@@ -185,6 +172,8 @@
 </div>
 </form:form>
 </fieldset>
+
+<c:if test="${showResults == true}" >
 <fieldset id="results">
 <legend><span>Search Results</span></legend>
 	<table id="resultsTable" class="pretty">
@@ -197,22 +186,23 @@
 	</tr>
 	</thead>
 	<tbody>
-	<c:forEach var="row" items="${searchResults}">
+	<c:forEach var="formrow" items="${searchResults}" varStatus="row">
 	
 	<tr>
 		<td>
-			<a href="detail?url=${row.urlDetail }" >
-				<c:out value="${row.formNumber}" />
+			<a id="formname_${row.count }" href="detail?url=${formrow.urlDetail }" >
+				<c:out value="${formrow.formNumber}" />
 			</a>
 		</td>
 		<td>
-			<c:out value="${row.formName}" />
+			<a href="#">Click me</a>
+			<c:out value="${formrow.formName}" />
 		</td>
 		<td>
-			<c:out value="${row.formType}" />
+			<c:out value="${formrow.formType}" />
 		</td>		
 		<td>
-			<a href="view?url=${row.docDetail }" target="_blank"><img class="icon" src="<%= request.getContextPath() %>/resources/images/icon_pdf.png"></img></a>
+			<a href="view?url=${formrow.docDetail }" target="_blank"><img class="icon" src="<%= request.getContextPath() %>/resources/images/icon_pdf.png"></img></a>
 		</td>									
 	</tr>
 	
@@ -220,5 +210,62 @@
 	</tbody>
 	</table>
 </fieldset>
-
+</c:if>
 </div>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+//	$('#resultsJSON').html('<table id="resultsTable1" class="datatable">');
+	
+	//dom setup
+	$("input[type='date']").datepicker();
+	
+	$("<option value='none' selected='true'>Select...</option><option value='00'>-- Any --</option>").prependTo("select");
+	
+	//datatable initialization
+	$('#resultsTable').dataTable( {
+		"sDom": '<"top"fi>t<"bottom"><"clear">',
+		"bFilter": true,
+		"bStateSave": true,
+		"bJQueryUI": true,
+		"bSort" : true,
+		"bPaginate": false,
+		"bProcessing":false,
+		//"sScrollY": "200px",
+		"bScrollCollapse": true,
+		"bServerSide":false,
+		"oLanguage": {
+		      "sSearch": "Filter:",
+			  "sInfo": "Found _TOTAL_ forms",
+			  "sInfoFiltered":"_TOTAL_ filtered from _MAX_ total records",
+			  "sZeroRecords":"Your filter did not match any rows. ",
+			  "sEmptyTable":"Your search did not match any forms. "
+		    }
+	} );
+	
+	//click events
+	$("#advancedLink").click(function() {
+		$("#advancedFields").toggle();
+	});
+	
+	$("#clear").click(function() {
+		$("#results").hide();
+	});
+	
+	$("#submit").click(function() {
+		//$("#searchForm").validate();
+		$.blockUI({ message: '<h2>Searching...<h2>'});
+		//$.unblockUI();
+	//	$("#results").show();
+	});
+	
+	$("#resultsTable a").click(function() {
+		$.blockUI({ message: '<h2>Searching...<h2>'});
+		//$.unblockUI();
+	});
+	
+	// unblock when ajax activity stops 
+    $(document).ajaxStop($.unblockUI);
+	
+
+} );
+</script>

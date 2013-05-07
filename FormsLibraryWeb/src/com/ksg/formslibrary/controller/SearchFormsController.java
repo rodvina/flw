@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -53,6 +54,7 @@ public class SearchFormsController {
 //		redirectAttrs.addFlashAttribute("results", results);
 //		log.debug("results:"+results);
 		redirectAttrs.addFlashAttribute("searchResults", searchResults);
+		redirectAttrs.addFlashAttribute("showResults", true);
 		return "redirect:/{afl}/internal/search";
 
 	}
@@ -69,6 +71,7 @@ public class SearchFormsController {
 		List<Form> searchResults = formsLibraryService.search(afl, searchCriteria);
 		
 		redirectAttrs.addFlashAttribute("searchResults", searchResults);
+		redirectAttrs.addFlashAttribute("showResults", true);
 		return "redirect:/{afl}/external/search";
 
 	}
