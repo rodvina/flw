@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ksg.formslibrary.domain.Form;
@@ -31,7 +31,7 @@ import com.ksg.formslibrary.service.FormsLibraryService;
  */
 @Controller("searchFormController")
 @RequestMapping(method=RequestMethod.POST)
-@SessionAttributes(value="searchResults")
+@SessionAttributes(value={"searchResults", "searchCriteria"})
 public class SearchFormsController {
 	private static final Logger log = Logger.getLogger(SearchFormsController.class);
 
@@ -76,4 +76,9 @@ public class SearchFormsController {
 
 	}
 	
+	@RequestMapping(value = "{afl}/internal/clear")
+	public String processClear(SessionStatus status) {
+		status.setComplete();
+		return "redirect:/{afl}/internal/search";
+	}
 }

@@ -131,24 +131,24 @@
 			<form:errors path="nbEffDate" cssClass="error"/>
 		</div>
 		<div class="col"><label for="nbExpDate"><fmt:message key='label.nbexpdate'/></label>
-		   	<input name="nbExpDate" type="date" id="nbExpDate">
+		   	<form:input path="nbExpDate" name="nbExpDate" type="date" id="nbExpDate"/>
 		</div>
 		<div class="col"><label for="renEffDate"><fmt:message key='label.reneffdate'/></label>
-		   	<input name="renEffDate" type="date" id="renEffDate">
+		   	<form:input path="renEffDate" name="renEffDate" type="date" id="renEffDate"/>
 		</div>
 		<div class="col"><label for="renExpDate"><fmt:message key='label.renexpdate'/></label>
-		   	<input name="renExpDate" type="date" id="renExpDate">
+		   	<form:input path="renExpDate" name="renExpDate" type="date" id="renExpDate"/>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col"><label for="procDate"><fmt:message key='label.procdate'/></label>
-			<input name="procDate" type="date" id="procDate">
+			<form:input path="procDate" name="procDate" type="date" id="procDate"/>
 		</div>
 		<div class="col"><label for="modDate"><fmt:message key='label.moddate'/></label>
-		<input name="modDate" type="date" id="modDate">
+		<form:input path="modDate" name="modDate" type="date" id="modDate"/>
 		</div>
 		<div class="col"><label><fmt:message key='label.formId'/></label>
-		<input name="formId" type="text" id="formId">
+		<form:input path="formId" name="formId" type="text" id="formId"/>
 		</div>
 		<div class="col">
 	 		<label><fmt:message key='label.status'/></label>
@@ -167,7 +167,7 @@
 	<input id="submit" class="submit" type="submit" value="Search"/>
 	</div>
 	<div class="col">
-	<input id="clear" type="button" value="Clear"/>
+	<input id="clear" type="submit" value="Clear"/>
 	</div>
 </div>
 </form:form>
@@ -216,9 +216,20 @@
 $(document).ready(function() {
 //	$('#resultsJSON').html('<table id="resultsTable1" class="datatable">');
 	
+	//if form field values exist, populate from local storage
+	if (localStorage) {
+		$("input[type='text']").each(function() {
+			var fieldid = $(this).attr("id");
+			if (localStorage[fieldid]) {
+				$(this).val(localStorage[fieldid]);
+			} 
+		});
+	}
+	
 	//dom setup
 	$("input[type='date']").datepicker();
 	
+	//add defaults to multiselects
 	$("<option value='none' selected='true'>Select...</option><option value='00'>-- Any --</option>").prependTo("select");
 	
 	//datatable initialization
@@ -247,13 +258,31 @@ $(document).ready(function() {
 		$("#advancedFields").toggle();
 	});
 	
+	//clear session variables via post
 	$("#clear").click(function() {
+//		$("input[type='text']").val("");
+//		$("input[type='date']").val("");
+//		$("option").removeAttr("selected");
+//		$("option[value='none']").attr("selected", "true");
+		$("#searchForm").attr("action", "clear");
 		$("#results").hide();
+		if (localStorage) {
+			localStorage.clear();
+		}
+		
 	});
 	
 	$("#submit").click(function() {
 		//$("#searchForm").validate();
 		$.blockUI({ message: '<h2>Searching...<h2>'});
+
+		//store in local storage
+		if (localStorage) {
+			$("input[type='text'").each(function() {
+				localStorage[$(this).attr("id")] = $(this).attr("value");
+			});
+			
+		}
 		//$.unblockUI();
 	//	$("#results").show();
 	});

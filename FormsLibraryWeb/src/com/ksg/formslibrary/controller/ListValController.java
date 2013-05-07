@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.ksg.formslibrary.domain.CodeValue;
 import com.ksg.formslibrary.domain.Form;
@@ -32,7 +33,7 @@ import com.ksg.formslibrary.service.ListValueService;
  */
 @Controller("listValController")
 @RequestMapping(method=RequestMethod.GET)
-@SessionAttributes(value="searchResults")
+@SessionAttributes(value={"searchResults", "searchCriteria"})
 public class ListValController {
 	private static final String VIEW_SEARCH = "search";
 
@@ -58,22 +59,23 @@ public class ListValController {
 	 */
 	@RequestMapping(value = "{afl}/internal/search")
 	public String showSearchInternal(@PathVariable String afl, @RequestParam(required=false) String action, Model model, 
-			@ModelAttribute("searchResults") final List<Form> searchResults) {
+			@ModelAttribute("searchResults") final List<Form> searchResults, SessionStatus status) {
 		log.info("returning view for internal GET...");
 		model.addAttribute("showAdvance", true);
 		if (StringUtils.equals(action, "return")) {
 			model.addAttribute("showResults", true);
-		}
+		} 
 		return VIEW_SEARCH;
 	}
 	
 	@RequestMapping(value = "{afl}/external/search")
-	public String showSearchExternal(@PathVariable String afl, @RequestParam(required=false) String action, Model model) {
+	public String showSearchExternal(@PathVariable String afl, @RequestParam(required=false) String action, Model model,
+			@ModelAttribute("searchResults") final List<Form> searchResults, SessionStatus status) {
 		log.info("returning view for external GET...");
 		model.addAttribute("showAdvance", false);
 		if (StringUtils.equals(action, "return")) {
 			model.addAttribute("showResults", true);
-		}
+		} 
 		return VIEW_SEARCH;
 	}
 	

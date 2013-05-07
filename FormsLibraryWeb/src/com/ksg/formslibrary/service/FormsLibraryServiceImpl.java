@@ -40,7 +40,7 @@ public class FormsLibraryServiceImpl implements FormsLibraryService {
 	@Override
 	public List<Form> search(String affiliate, SearchCriteria searchCriteria) {
 		//TODO:  Decide whether REST service will provide GET (via querystring) or POST (via request body) method
-		log.info("searching for forms based on the following criteria: " + searchCriteria);
+		log.info("searching for forms based on the following criteria:" + searchCriteria.toJSON());
 		return searchViaPost(affiliate, searchCriteria);
 	}
 
